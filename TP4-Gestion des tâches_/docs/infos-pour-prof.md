@@ -24,9 +24,7 @@ HMTL personnalisé)
 • arreterMinuterie 
 • ajusterAvancementTacheSelonMinuterie 
 • convertirJoursEnMillisecondes 
-• convertirMillisecondesEnJours 
-
-     
+• convertirMillisecondesEnJours      
 
 ## George :
 (etudiant 1)
@@ -46,11 +44,6 @@ fléchée
 • Créer une animation sur l’affichage des 
 cards
 
-
-
 # Les couleurs choisies
 
 # Autres commentaires
-
-
-

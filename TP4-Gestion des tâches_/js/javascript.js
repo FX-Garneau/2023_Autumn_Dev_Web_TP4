@@ -6,8 +6,8 @@
  *  les fonction de base lors du chargement de la page
  */
 function Initialisation() {
-  AfficherCardsTaches();
-  ChargerEtAfficherDonnerDiagrammeEtCards();
+   AfficherCardsTaches();
+   ChargerEtAfficherDonnerDiagrammeEtCards();
 }
 
 function creeDoneesPourGraphique() {}
@@ -35,8 +35,12 @@ function AfficherCardsTaches() {
   }
 }
 
-function SupprimerTache() {}
+-
 
-function verifierSiDependanceExiste() {}
 
-window.addEventListener("load", Initialisation);
+function verifierSiDependanceExiste(){
+
+};
+
+
+window.addEventListener("load",Initialisation);
