@@ -1,0 +1,19 @@
+{
+   "editor.formatOnSave": true,
+   "editor.formatOnPaste": true,
+   "editor.formatOnType": true,
+   "diffEditor.wordWrap": "off",
+   "editor.tabSize": 3,
+   "editor.detectIndentation": false,
+   "explorer.fileNesting.expand": true,
+   "explorer.fileNesting.enabled": true,
+   "liveSassCompile.settings.formats": [
+      {
+         "generateMap": true,
+         "format": "compressed",
+         "extensionName": ".css",
+         "savePath": "~/../css"
+      }
+   ],
+   "files.autoSave": "afterDelay",
+}
