@@ -1,12 +1,16 @@
 "use strict";
-// Global DATA_TACHES, fonctions_utilitaires.js
+/* global DATA_TACHES, creerCard*/
 
-/* George :
-Todo : aussi
-- creer une animation sur l'affichage
-- rafraichir l'affichage du diagrame 
-*/
 
+
+/**
+ * fonction qui initialise le fichier de base et appelle
+ *  les fonction de base lors du chargement de la page
+ */
+function Initialisation(){
+    AfficherCardsTaches();
+    ChargerEtAfficherDonnerDiagrammeEtCards();
+}
 
 
 function creeDoneesPourGraphique()
@@ -21,10 +25,24 @@ function ChargerEtAfficherDonnerDiagrammeEtCards(){
 
 }
 
+/**
+ * appelle la fonction creercard du fichier fonction-utilitaire.js
+ *  pour les lier et les afficher a l'ecran de l'utilisateur
+ */
 function AfficherCardsTaches(){
+    
     let DivCard = document.getElementById("LesCards");
-    DivCard.innerHTML="";
-    let Cards =
+
+    for(let data of DATA_TACHES.detailsTache)
+    {
+
+        for(let datas of DATA_TACHES.taches)
+            {
+            let Cards = creerCard("./images/check2-square.svg",datas.titre,data.detailsTache,data.detailsTache,"..");
+            DivCard.appendChild(Cards);
+        }
+
+    }
     DivCard.className="row";
 
 }
@@ -38,6 +56,7 @@ function SupprimerTache(){
 
 function verifierSiDependanceExiste(){
 
-}
+};
 
 
+window.addEventListener("load",Initialisation);
