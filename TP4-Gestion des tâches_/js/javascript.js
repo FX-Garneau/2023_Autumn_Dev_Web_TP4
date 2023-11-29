@@ -125,6 +125,7 @@ function sauvegarderChangementsTache() { }
  * Si le ID de la tâche est présente dans le tableau dependancies
  * d'une autre tâche, il y a alors dépendance.
  * @param {*} pIdTache Le ID de la tâche à vérifier
+ * @returns {boolean} Vrai si la tâche est en dépendance, faux sinon
  * @author Georgi Gavrailov
  */
 function verifierSiDependanceExiste(pIdTache) {
