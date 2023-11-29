@@ -68,6 +68,7 @@ function chargerEtAfficherDonneesDiagrammeEtCards() {
    table = creerDonneesPourGraphique();
    // 2. Créer le graphique
    chart = new google.visualization.Gantt($id("graphique"));
+   google.visualization.events.addListener(chart, "select", recupererTacheSelectionneeDansDiagrammeDeGantt);
    (window.onresize = () => chart.draw(table, { height: 250 }))();
    // 3. Afficher les cards
    afficherCardsTaches();
@@ -98,7 +99,11 @@ function creerDonneesPourGraphique() {
  * d'afficher les données dans une formulaire intégré à une fenêtre modale
  * pour les éditer.
  */
-function recupererTacheSelectionneeDansDiagrammeDeGantt() { }
+function recupererTacheSelectionneeDansDiagrammeDeGantt() {
+   let selection = chart.getSelection()[0];
+   let tache = table.getRowProperties(selection.row); // retourne null jsp pourquoi
+   console.log(tache);
+}
 
 /**
  * Cette fonction est appelée par une minuterie aux secondes.
