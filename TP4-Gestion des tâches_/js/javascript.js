@@ -1,8 +1,11 @@
 "use strict";
 /* global DATA_TACHES, creerCard, $id, $li, google */
 
-let chart, table;
 let bouton = true;
+/** @type {google.visualization.Gantt} */
+let chart;
+/** @type {google.visualization.DataTable} */
+let table;
 
 /**
  * Fonction exécutée après que le DOM HTML soit
@@ -122,10 +125,10 @@ function sauvegarderChangementsTache() { }
  * Si le ID de la tâche est présente dans le tableau dependancies
  * d'une autre tâche, il y a alors dépendance.
  * @param {*} pIdTache
+ * @author Georgi Gavrailov
  */
 function verifierSiDependanceExiste(pIdTache) {
-   console.log(pIdTache);
-   if (pIdTache == table.dependances)
+   if (table.getDistinctValues(6).some(deps => deps.includes(pIdTache))) /** @author Ulric Huot */
       alert("La tache ne peux pas etre retire car elle est depend de d'autre tache aussi");
    else
       return false;
