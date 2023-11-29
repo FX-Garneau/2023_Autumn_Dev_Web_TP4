@@ -23,10 +23,11 @@ function initialisation() {
  */
 function afficherCardsTaches() {
    let DivCard = document.getElementById("LesCards");
-   let ul = document.createElement("ul");
 
    // la descrition
    for (let data of DATA_TACHES.detailsTache) {
+      let ul = document.createElement("ul");
+
       ul.append($li(data.id), $li(data.titre), $li(data.dateDebut));
 
       let boutonHtml = document.createElement("bouton");
@@ -109,15 +110,5 @@ function verifierSiDependanceExiste(pIdTache) { }
  * @param {*} e
  */
 function supprimerTache(e) { }
-
-
-/**
- * creer les li
- * @returns retourne un vecteur de li
- */
-function creeDesCriptionCard() {
-
-   return ul;
-}
 
 window.addEventListener("load", initialisation);

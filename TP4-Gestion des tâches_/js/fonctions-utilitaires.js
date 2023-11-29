@@ -21,28 +21,38 @@ function convertirMillisecondesEnJours(pNbMillisecondes) { }
  * @param {string} pTitre recois le titre du card
  * @param {string} pDescription recois la description
  * @param {boolean} pEstAvecBouton  s'il y a un bouton ou non
- * @param {Element} pElementHtmlBouton je ne sais pas
+ * @param {Element} pElementHtmlBouton le code du bouton
  * @returns {Element} retourne la div contenat le card
  */
 function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBouton) {
+
+
    for (let data of DATA_TACHES.taches) {
+
       let divContentLECard = document.createElement("div");
-      divContentLECard.className = "cards";
+      divContentLECard.className = "card w-50";
+
       // header du card:
       let CardHeader = document.createElement("div");
       CardHeader.className = "card-header";
+
       let img = document.createElement("img");
-      img.className = "card-image";
-      let h2 = document.createElement("h2");
-      h2.classList.add("card-title");
-      let ul = document.createElement("ul");
+      img.className = "card-image w-100";
+
+      divContentLECard.appendChild(CardHeader);
+      CardHeader.appendChild(img);
 
       //body du card:
       let CardBody = document.createElement("div");
       CardBody.classList.add("card-body");
-      h2.textContent = pTitre;
-      h2.className = "card-title";
 
+      let h2 = document.createElement("h2");
+      h2.classList.add("card-title");
+      h2.textContent = pTitre;
+
+      divContentLECard.appendChild(CardBody);
+      CardBody.appendChild(h2);
+      CardBody.appendChild(pDescription);
 
       // footer du card:
       let cardFooter = document.createElement("div");
@@ -54,21 +64,12 @@ function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBou
       img.src = pImage;
       img.alt = "photo de la card";
 
-      divContentLECard.appendChild(CardHeader);
-      CardHeader.appendChild(img);
-      divContentLECard.appendChild(CardBody);
-      CardBody.appendChild(h2);
-      CardBody.appendChild(pDescription);
-      divContentLECard.appendChild(CardHeader);
-      CardHeader.appendChild(img);
-      divContentLECard.appendChild(CardBody);
-      CardBody.appendChild(h2);
-      CardBody.appendChild(pDescription);
 
-      CardBody.appendChild(ul);
       divContentLECard.appendChild(cardFooter);
       return divContentLECard;
+
    }
+
 }
 
 /**
