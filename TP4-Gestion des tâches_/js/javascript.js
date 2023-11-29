@@ -3,7 +3,6 @@
 
 let chart, table;
 let bouton = true;
-let table;
 
 /**
  * Fonction exécutée après que le DOM HTML soit
