@@ -98,6 +98,7 @@ function creerDonneesPourGraphique() {
  * lorsqu'on sélectionne une tâche dans le diagramme. Cette fonction permet
  * d'afficher les données dans une formulaire intégré à une fenêtre modale
  * pour les éditer.
+ * @author Ulric Huot
  */
 function recupererTacheSelectionneeDansDiagrammeDeGantt() {
    let selection = chart.getSelection()[0];
