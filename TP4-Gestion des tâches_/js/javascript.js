@@ -1,5 +1,5 @@
 "use strict";
-/* global DATA_TACHES, creerCard*/
+/* global DATA_TACHES, creerCard */
 let bouton = true;
 
 /**
@@ -24,6 +24,20 @@ function initialisation() {
 function afficherCardsTaches() {
    let DivCard = document.getElementById("LesCards");
 
+   for (let data of DATA_TACHES.detailsTache) {
+      let Htmlbouton = creerBoutonHTmlS();
+      let description = creeDesCriptionCard();
+      let titre = data.id + data.titre;
+      DivCard.appendChild(
+         creerCard(
+            "./images/check2-square.svg",
+            titre,
+            description,
+            bouton,
+            Htmlbouton
+         )
+      );
+   }
    for (let data of DATA_TACHES.detailsTache) {
       let Htmlbouton = creerBoutonHTmlS();
       let description = creeDesCriptionCard();
@@ -122,6 +136,8 @@ function creerBoutonHTmlS() {
 function creeDesCriptionCard() {
    let vecLi = [];
    let ul = document.createElement("ul");
+   let vecLi = [];
+   let ul = document.createElement("ul");
 
    for (let data of DATA_TACHES.detailsTache) {
       let li = document.createElement("li");
@@ -142,6 +158,5 @@ function creeDesCriptionCard() {
    }
    return ul;
 }
--function verifierSiDependanceExiste() { };
 
 window.addEventListener("load", initialisation);

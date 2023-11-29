@@ -5,11 +5,13 @@
  * @param {number} pNbJours
  */
 function convertirJoursEnMillisecondes(pNbJours) { }
+function convertirJoursEnMillisecondes(pNbJours) { }
 
 /**
  * Fonction qui convertit un nombre de millisecondes en jours et le retourne.
  * @param {number} pNbMillisecondes
  */
+function convertirMillisecondesEnJours(pNbMillisecondes) { }
 function convertirMillisecondesEnJours(pNbMillisecondes) { }
 
 /**
@@ -42,6 +44,11 @@ function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBou
       CardBody.classList.add("card-body");
       h2.textContent = pTitre;
       h2.className = "card-title";
+      //body du card:
+      let CardBody = document.createElement("div");
+      CardBody.classList.add("card-body");
+      h2.textContent = pTitre;
+      h2.className = "card-title";
 
       // footer du card:
       let cardFooter = document.createElement("div");
@@ -50,13 +57,24 @@ function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBou
 
       img.src = pImage;
       img.alt = "photo de la card";
+      img.src = pImage;
+      img.alt = "photo de la card";
 
       divContentLECard.appendChild(CardHeader);
       CardHeader.appendChild(img);
       divContentLECard.appendChild(CardBody);
       CardBody.appendChild(h2);
       CardBody.appendChild(pDescription);
+      divContentLECard.appendChild(CardHeader);
+      CardHeader.appendChild(img);
+      divContentLECard.appendChild(CardBody);
+      CardBody.appendChild(h2);
+      CardBody.appendChild(pDescription);
 
+      CardBody.appendChild(ul);
+      divContentLECard.appendChild(cardFooter);
+      return divContentLECard;
+   }
       CardBody.appendChild(ul);
       divContentLECard.appendChild(cardFooter);
       return divContentLECard;
