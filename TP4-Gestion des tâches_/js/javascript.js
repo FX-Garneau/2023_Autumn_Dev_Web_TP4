@@ -125,7 +125,7 @@ function sauvegarderChangementsTache() { }
  */
 function verifierSiDependanceExiste(pIdTache) {
    if (pIdTache == table.id)
-      return false;
+      alert("La tache ne peux pas etre retire car elle est depend de d'autre tache aussi");
    else
       return false;
 }
@@ -146,9 +146,6 @@ function supprimerTache(e) {
    if (verifierSiDependanceExiste(boutonSupprimer.getAttribute("id-task"))) {
       document.removeChild();
 
-   }
-   else {
-      alert("La tache ne peux pas etre retire car elle est depend de d'autre tache aussi");
    }
 
 }

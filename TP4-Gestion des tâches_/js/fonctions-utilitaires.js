@@ -35,7 +35,7 @@ function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBou
    for (let data of DATA_TACHES.taches) {
 
       let divContentLECard = document.createElement("div");
-      divContentLECard.className = "card w-50";
+      divContentLECard.className = "card w-50 d-flex";
       // header du card:
       let CardHeader = document.createElement("div");
       CardHeader.className = "card-header";
