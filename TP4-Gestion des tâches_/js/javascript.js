@@ -1,5 +1,6 @@
 "use strict";
 /* global DATA_TACHES, creerCard*/
+let bouton = true;
 
 /**
  * fonction qui initialise le fichier de base et appelle
@@ -18,8 +19,34 @@ function chargerEtAfficherDonnerDiagrammeEtCards() { }
  * appelle la fonction creercard du fichier fonction-utilitaire.js
  *  pour les lier et les afficher a l'ecran de l'utilisateur
  */
-function afficherCardsTaches() {
-   let divCard = document.getElementById("LesCards");
+function AfficherCardsTaches() {
+  let DivCard = document.getElementById("LesCards");
+
+  for (let data of DATA_TACHES.detailsTache) {
+    let Htmlbouton = creerBoutonHTmlS();
+
+    let titre = data.id + data.titre;
+    DivCard.appendChild(
+      creerCard(
+        "./images/check2-square.svg",
+        titre,
+        data.titre,
+        bouton,
+        Htmlbouton
+      )
+    );
+  }
+}
+
+/**
+ *
+ * @returns retourne le bouton
+ */
+function creerBoutonHTmlS() {
+  let bouton = document.createElement("bouton");
+  bouton.className = "btn btn-warning";
+  bouton.textContent = "Supprimer";
+  return bouton;
 }
 
 function verifierSiDependanceExiste() { };

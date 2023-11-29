@@ -17,52 +17,49 @@ function creerCard(
    pEstAvecBouton,
    pElementHtmlBouton
 ) {
-   let divContentLECard = document.createElement("div");
-   divContentLECard.className = "card";
-   // header du card:
-   let cardHeader = document.createElement("div");
-   cardHeader.className = "card-header";
-   let img = document.createElement("img");
-   img.className = "card-image";
-   let h2 = document.createElement("h2");
-   h2.classList.add("card-title");
-   let ul = document.createElement("ul");
+  for (let data of DATA_TACHES.taches) {
+    let divContentLECard = document.createElement("div");
+    divContentLECard.className = "cards";
+    // header du card:
+    let CardHeader = document.createElement("div");
+    CardHeader.className = "card-header";
+    let img = document.createElement("img");
+    img.className = "card-image";
+    let h2 = document.createElement("h2");
+    h2.classList.add("card-title");
+    let ul = document.createElement("ul");
 
-   for (let data of DATA_TACHES.detailsTache) {
+    for (let data of DATA_TACHES.detailsTache) {
       let li = document.createElement("li");
-      li.textContent = data.id;
-      li.textContent = data.titre;
-      li.textContent = data.dateDebut;
-      li.textContent = data.dateFin;
-      li.textContent = data.dureeEnNbJours;
-      li.textContent = data.pctComplete;
-      li.textContent = data.dependances;
+      li.textContent += data.id;
+      li.textContent += data.titre;
+      li.textContent += data.dateDebut;
+      li.textContent += data.dateFin;
+      li.textContent += data.dureeEnNbJours;
+      li.textContent += data.pctComplete;
+      li.textContent += data.dependances;
       ul.appendChild(li);
-   }
+      //body du card:
+      let CardBody = document.createElement("div");
+      CardBody.classList.add("card-body");
+      h2.textContent = pTitre;
+      h2.className = "card-title";
 
-   //body du card:
-   let cardBody = document.createElement("div");
-   cardBody.classList.add("card-body");
-   h2.textContent = pTitre;
-   h2.className = "card-title";
+      // footer du card:
+      let cardFooter = document.createElement("div");
+      cardFooter.className = "card-footer";
+      if (pEstAvecBouton) cardFooter.appendChild(pElementHtmlBouton);
 
-   // footer du card:
-   let cardFooter = document.createElement("div");
-   cardFooter.className = "card-footer";
-   let btnSupprimer = document.createElement("button");
-   btnSupprimer.textContent = "Supprimer";
-   btnSupprimer.className = "btn btn-warning";
+      img.src = pImage;
+      img.alt = "photo de la card";
 
-   img.src = pImage;
-   img.alt = "photo de la card";
-
-   divContentLECard.appendChild(cardHeader);
-   cardHeader.appendChild(img);
-   divContentLECard.appendChild(cardBody);
-   cardBody.appendChild(ul);
-
-   cardBody.appendChild(h2);
-   divContentLECard.appendChild(cardFooter);
-   cardFooter.appendChild(btnSupprimer);
-   return divContentLECard;
+      divContentLECard.appendChild(CardHeader);
+      CardHeader.appendChild(img);
+      divContentLECard.appendChild(CardBody);
+      CardBody.appendChild(ul);
+      CardBody.appendChild(h2);
+      divContentLECard.appendChild(cardFooter);
+      return divContentLECard;
+    }
+  }
 }
