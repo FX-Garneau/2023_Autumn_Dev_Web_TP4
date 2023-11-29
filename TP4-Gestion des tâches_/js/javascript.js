@@ -124,7 +124,8 @@ function sauvegarderChangementsTache() { }
  * @param {*} pIdTache
  */
 function verifierSiDependanceExiste(pIdTache) {
-   if (pIdTache == table.id)
+   console.log(pIdTache);
+   if (pIdTache == table.dependances)
       alert("La tache ne peux pas etre retire car elle est depend de d'autre tache aussi");
    else
       return false;
@@ -143,7 +144,7 @@ function supprimerTache(e) {
 
    let boutonSupprimer = e.target;
    let id_task = boutonSupprimer.getAttribute("id-task");
-   if (verifierSiDependanceExiste(boutonSupprimer.getAttribute("id-task"))) {
+   if (verifierSiDependanceExiste(id_task)) {
       document.removeChild();
 
    }
