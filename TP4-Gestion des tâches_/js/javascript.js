@@ -12,7 +12,7 @@ let bouton = true;
  * @author Ulric Huot
  */
 function initialisation() {
-   google.charts.load("current", { packages: ["corechart"], callback: chargerEtAfficherDonneesDiagrammeEtCards });
+   google.charts.load("current", { packages: ["gantt"], callback: chargerEtAfficherDonneesDiagrammeEtCards });
 }
 
 /**
