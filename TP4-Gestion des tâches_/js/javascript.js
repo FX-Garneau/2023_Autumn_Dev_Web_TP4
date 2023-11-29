@@ -34,6 +34,8 @@ function afficherCardsTaches() {
       let boutonHtml = document.createElement("bouton");
       boutonHtml.className = "btn btn-warning";
       boutonHtml.textContent = "Supprimer";
+      boutonHtml.setAttribute("type", "Button");
+      boutonHtml.setAttribute(data.id);
       let titre = data.id + data.titre;
       DivCard.appendChild(
          creerCard(
