@@ -142,9 +142,9 @@ function verifierSiDependanceExiste(pIdTache) {
  * @param {MouseEvent} e Le event
  */
 function supprimerTache(e) {
-   let existe = verifierSiDependanceExiste(e.target.getAttribute("id-task"));
-   console.log(existe);
-   existe ? alert("il y a des dependances") : e.target.parentElement.parentElement.remove();
+   verifierSiDependanceExiste(e.target.getAttribute("id-task"))
+      ? alert("il y a des dependances")
+      : e.target.parentElement.parentElement.remove();
 }
 
 window.addEventListener("load", initialisation);
