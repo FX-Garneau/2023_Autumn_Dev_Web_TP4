@@ -126,13 +126,10 @@ function sauvegarderChangementsTache() { }
  * d'une autre tâche, il y a alors dépendance.
  * @param {*} pIdTache Le ID de la tâche à vérifier
  * @returns {boolean} Vrai si la tâche est en dépendance, faux sinon
- * @author Georgi Gavrailov
+ * @author Ulric Huot
  */
 function verifierSiDependanceExiste(pIdTache) {
-   if (table.getDistinctValues(6).some(deps => deps.includes(pIdTache))) /** @author Ulric Huot */
-      alert("La tache ne peux pas etre retire car elle est depend de d'autre tache aussi");
-   else
-      return false;
+   return table.getDistinctValues(6).some(deps => deps.includes(pIdTache));
 }
 
 /**
@@ -145,10 +142,9 @@ function verifierSiDependanceExiste(pIdTache) {
  * @param {MouseEvent} e Le event
  */
 function supprimerTache(e) {
-   let boutonSupprimer = e.target;
-   if (!verifierSiDependanceExiste(boutonSupprimer.getAttribute("id-task"))) {
-      boutonSupprimer.parentElement.parentElement.remove();
-   }
+   let existe = verifierSiDependanceExiste(e.target.getAttribute("id-task"));
+   console.log(existe);
+   existe ? alert("il y a des dependances") : e.target.parentElement.parentElement.remove();
 }
 
 window.addEventListener("load", initialisation);
