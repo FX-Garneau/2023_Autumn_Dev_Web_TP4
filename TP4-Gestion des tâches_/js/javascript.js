@@ -3,6 +3,7 @@
 
 let chart, table;
 let bouton = true;
+let table;
 
 /**
  * Fonction exécutée après que le DOM HTML soit
@@ -36,7 +37,7 @@ function afficherCardsTaches() {
       boutonHtml.className = "btn btn-warning";
       boutonHtml.textContent = "Supprimer";
       boutonHtml.setAttribute("type", "Button");
-      boutonHtml.setAttribute(data.id);
+      boutonHtml.setAttribute("id-task", data.id);
       let titre = data.id + data.titre;
       DivCard.appendChild(
          creerCard(
@@ -124,9 +125,10 @@ function sauvegarderChangementsTache() { }
  * @param {*} pIdTache
  */
 function verifierSiDependanceExiste(pIdTache) {
-
-
-   return false;
+   if (pIdTache == table.id)
+      return false;
+   else
+      return false;
 }
 
 /**
@@ -136,11 +138,15 @@ function verifierSiDependanceExiste(pIdTache) {
  * card via le paramètre e (qui est l’événement déclencheur). On ne peut
  * pas supprimer une tâche lorsqu’il y a des dépendance (utilisation de
  * la fonction verifierSiDependanceExiste)
- * @param {*} e
+ * @param {MouseEvent} e
  */
 function supprimerTache(e) {
-   if (verifierSiDependanceExiste(e.id)) {
+
+   let boutonSupprimer = e.target;
+   let id_task = boutonSupprimer.getAttribute("id-task");
+   if (verifierSiDependanceExiste(boutonSupprimer.getAttribute("id-task"))) {
       document.removeChild();
+
    }
    else {
       alert("La tache ne peux pas etre retire car elle est depend de d'autre tache aussi");

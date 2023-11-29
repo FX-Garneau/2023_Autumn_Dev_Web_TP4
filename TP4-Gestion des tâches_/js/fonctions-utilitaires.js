@@ -1,5 +1,6 @@
 "use strict";
 /* global DATA_TACHES, supprimerTache*/
+
 /**
  * Fonction qui convertit un nombre de jours en millisecondes et le retourne.
  * @param {number} pNbJours
@@ -57,7 +58,7 @@ function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBou
       CardBody.appendChild(h2);
       CardBody.appendChild(pDescription);
 
-      pElementHTMLBouton.addEventListener('click', supprimerTache());
+      pElementHTMLBouton.addEventListener("click", supprimerTache);
       // footer du card:
       let cardFooter = document.createElement("div");
       cardFooter.className = "card-footer";
