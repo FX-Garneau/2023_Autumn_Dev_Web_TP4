@@ -33,7 +33,7 @@ function afficherCardsTaches() {
    for (let data of DATA_TACHES.detailsTache) {
       let ul = document.createElement("ul");
 
-      ul.append($li(data.id), $li(data.titre), $li(data.dateDebut));
+      ul.append($li(data.id), $li(data.titre), $li(data.dateDebut), $li(data.dateFin), $li("Duree Nombre de Jours : " + data.dureeEnNbJours), $li("partie complete" + data.pctComplete), $li(data.dependances));
 
       let boutonHtml = document.createElement("bouton");
       boutonHtml.className = "btn btn-warning";
@@ -146,10 +146,8 @@ function verifierSiDependanceExiste(pIdTache) {
 function supprimerTache(e) {
 
    let boutonSupprimer = e.target;
-   let id_task = boutonSupprimer.getAttribute("id-task");
-   if (verifierSiDependanceExiste(id_task)) {
-      document.removeChild();
-
+   if (!verifierSiDependanceExiste(boutonSupprimer.getAttribute("id-task"))) {
+      boutonSupprimer.parentElement.parentElement.remove();
    }
 
 }
