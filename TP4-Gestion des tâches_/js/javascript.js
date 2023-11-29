@@ -124,7 +124,7 @@ function sauvegarderChangementsTache() { }
  * Vérifie si la tâche fait partie des dépendances d'autres tâches.
  * Si le ID de la tâche est présente dans le tableau dependancies
  * d'une autre tâche, il y a alors dépendance.
- * @param {*} pIdTache
+ * @param {*} pIdTache Le ID de la tâche à vérifier
  * @author Georgi Gavrailov
  */
 function verifierSiDependanceExiste(pIdTache) {
@@ -141,15 +141,13 @@ function verifierSiDependanceExiste(pIdTache) {
  * card via le paramètre e (qui est l’événement déclencheur). On ne peut
  * pas supprimer une tâche lorsqu’il y a des dépendance (utilisation de
  * la fonction verifierSiDependanceExiste)
- * @param {MouseEvent} e
+ * @param {MouseEvent} e Le event
  */
 function supprimerTache(e) {
-
    let boutonSupprimer = e.target;
    if (!verifierSiDependanceExiste(boutonSupprimer.getAttribute("id-task"))) {
       boutonSupprimer.parentElement.parentElement.remove();
    }
-
 }
 
 window.addEventListener("load", initialisation);
