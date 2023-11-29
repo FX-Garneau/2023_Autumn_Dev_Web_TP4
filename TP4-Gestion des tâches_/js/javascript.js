@@ -1,4 +1,5 @@
 "use strict";
+
 /* global DATA_TACHES, creerCard, $li $new, google */
 const { DataTable, Gantt } = google.visualization;
 
@@ -119,7 +120,11 @@ function sauvegarderChangementsTache() { }
  * d'une autre tâche, il y a alors dépendance.
  * @param {*} pIdTache
  */
-function verifierSiDependanceExiste(pIdTache) { }
+function verifierSiDependanceExiste(pIdTache) {
+
+
+   return false;
+}
 
 /**
  * Supprimer une tâche dont le Id est spécifié dans un attribut HTML
@@ -130,6 +135,14 @@ function verifierSiDependanceExiste(pIdTache) { }
  * la fonction verifierSiDependanceExiste)
  * @param {*} e
  */
-function supprimerTache(e) { }
+function supprimerTache(e) {
+   if (verifierSiDependanceExiste(e.id)) {
+      document.removeChild();
+   }
+   else {
+      alert("La tache ne peux pas etre retire car elle est depend de d'autre tache aussi");
+   }
+
+}
 
 window.addEventListener("load", initialisation);
