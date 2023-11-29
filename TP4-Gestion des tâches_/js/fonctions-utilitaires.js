@@ -5,13 +5,11 @@
  * @param {number} pNbJours
  */
 function convertirJoursEnMillisecondes(pNbJours) { }
-function convertirJoursEnMillisecondes(pNbJours) { }
 
 /**
  * Fonction qui convertit un nombre de millisecondes en jours et le retourne.
  * @param {number} pNbMillisecondes
  */
-function convertirMillisecondesEnJours(pNbMillisecondes) { }
 function convertirMillisecondesEnJours(pNbMillisecondes) { }
 
 /**
@@ -75,8 +73,8 @@ function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBou
       divContentLECard.appendChild(cardFooter);
       return divContentLECard;
    }
-      CardBody.appendChild(ul);
-      divContentLECard.appendChild(cardFooter);
-      return divContentLECard;
-   }
+   CardBody.appendChild(ul);
+   divContentLECard.appendChild(cardFooter);
+   return divContentLECard;
+}
 }
