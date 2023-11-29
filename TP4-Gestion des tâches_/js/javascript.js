@@ -3,9 +3,9 @@
 let bouton = true;
 
 /**
- * Fonction exécutée après que le DOM HTML soit 
- * chargé. Dans cette fonction, on va en profiter pour lancer les 
- * méthodes de base de google.charts (soit load et setOnLoadCallback 
+ * Fonction exécutée après que le DOM HTML soit
+ * chargé. Dans cette fonction, on va en profiter pour lancer les
+ * méthodes de base de google.charts (soit load et setOnLoadCallback
  * qui va appeler notre fonction chargerEtAfficherDonneesDiagrammeEtCards
  * une fois que la librairie JavaScript de Google est prêt). Voir la documentation.
  */
@@ -15,7 +15,7 @@ function initialisation() {
 }
 
 /**
- * Affiche toutes les tâches sous forme de card. 
+ * Affiche toutes les tâches sous forme de card.
  * On vide la section des cards, puis on recréer l'affichage.
  * On appelle la fonction utilitaire creerCard. Le titre est
  * le id et titre de la tâche, le contenu est le reste des
@@ -24,20 +24,20 @@ function initialisation() {
 function afficherCardsTaches() {
    let DivCard = document.getElementById("LesCards");
 
-  for (let data of DATA_TACHES.detailsTache) {
-    let Htmlbouton = creerBoutonHTmlS();
-    let description = creeDesCriptionCard();
-    let titre = data.id + data.titre;
-    DivCard.appendChild(
-      creerCard(
-        "./images/check2-square.svg",
-        titre,
-        description,
-        bouton,
-        Htmlbouton
-      )
-    );
-  }
+   for (let data of DATA_TACHES.detailsTache) {
+      let Htmlbouton = creerBoutonHTmlS();
+      let description = creeDesCriptionCard();
+      let titre = data.id + data.titre;
+      DivCard.appendChild(
+         creerCard(
+            "./images/check2-square.svg",
+            titre,
+            description,
+            bouton,
+            Htmlbouton
+         )
+      );
+   }
 }
 
 /**
@@ -89,7 +89,7 @@ function sauvegarderChangementsTache() { }
  * Vérifie si la tâche fait partie des dépendances d'autres tâches.
  * Si le ID de la tâche est présente dans le tableau dependancies
  * d'une autre tâche, il y a alors dépendance.
- * @param {*} pIdTache 
+ * @param {*} pIdTache
  */
 function verifierSiDependanceExiste(pIdTache) { }
 
@@ -100,11 +100,9 @@ function verifierSiDependanceExiste(pIdTache) { }
  * card via le paramètre e (qui est l’événement déclencheur). On ne peut
  * pas supprimer une tâche lorsqu’il y a des dépendance (utilisation de
  * la fonction verifierSiDependanceExiste)
- * @param {*} e 
+ * @param {*} e
  */
 function supprimerTache(e) { }
-
-
 
 /**
  *
@@ -122,24 +120,28 @@ function creerBoutonHTmlS() {
  * @returns retourne un vecteur de li
  */
 function creeDesCriptionCard() {
-  let vecLi = [];
-  let ul = document.createElement("ul");
+   let vecLi = [];
+   let ul = document.createElement("ul");
 
-  for (let data of DATA_TACHES.detailsTache) {
-    let li = document.createElement("li");
-    // en dvp
-    li.textContent = "";
-    li.textContent = data.id;
-    ul.appendChild(li);
-    li.textContent = "";
-    li.textContent = data.titre;
-    ul.appendChild(li);
-    li.textContent = "";
+   for (let data of DATA_TACHES.detailsTache) {
+      let li = document.createElement("li");
+      // en dvp
+      li.textContent = "";
 
-    li.textContent = data.dateDebut;
-  }
-  return ul;
+      li.textContent = data.id;
+
+      ul.appendChild(li);
+      li.textContent = "";
+
+      li.textContent = data.titre;
+      ul.appendChild(li);
+      li.textContent = "";
+
+      ul.appendChild(li);
+      li.textContent = data.dateDebut;
+   }
+   return ul;
 }
--function verifierSiDependanceExiste() {};
+-function verifierSiDependanceExiste() { };
 
 window.addEventListener("load", initialisation);
