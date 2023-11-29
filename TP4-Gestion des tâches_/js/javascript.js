@@ -1,6 +1,5 @@
 "use strict";
 /* global DATA_TACHES, creerCard, $id, $li, google */
-const { DataTable, Gantt } = google.visualization;
 
 let bouton = true;
 
@@ -64,7 +63,7 @@ function chargerEtAfficherDonneesDiagrammeEtCards() {
    // 1. Charger les données pour le graphique
    let table = creerDonneesPourGraphique();
    // 2. Créer le graphique
-   let chart = new Gantt($id("graphique"));
+   let chart = new google.visualization.Gantt($id("graphique"));
    chart.draw(table, { height: 400 });
    // 3. Afficher les cards
    afficherCardsTaches();
@@ -78,7 +77,7 @@ function chargerEtAfficherDonneesDiagrammeEtCards() {
  * @author Ulric Huot
  */
 function creerDonneesPourGraphique() {
-   let table = new DataTable();
+   let table = new google.visualization.DataTable();
 
    for (let tache of DATA_TACHES.taches)
       table.addColumn(tache.type, tache.titreTache);
