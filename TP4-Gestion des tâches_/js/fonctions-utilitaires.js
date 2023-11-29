@@ -79,6 +79,10 @@ function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBou
 /**
  * @type {(tag: string) => HTMLElement} 
  */
+const $id = document.getElementById.bind(document);
+/**
+ * @type {(tag: string) => HTMLElement} 
+ */
 const $new = document.createElement.bind(document);
 /**
  * Crée un <li> avec le texte spécifié
