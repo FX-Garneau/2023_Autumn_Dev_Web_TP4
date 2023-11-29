@@ -1,6 +1,7 @@
 "use strict";
 /* global DATA_TACHES, creerCard, $id, $li, google */
 
+let chart, table;
 let bouton = true;
 let table;
 
@@ -64,8 +65,8 @@ function chargerEtAfficherDonneesDiagrammeEtCards() {
    // 1. Charger les données pour le graphique
    table = creerDonneesPourGraphique();
    // 2. Créer le graphique
-   let chart = new google.visualization.Gantt($id("graphique"));
-   chart.draw(table, { height: 400 });
+   chart = new google.visualization.Gantt($id("graphique"));
+   (window.onresize = () => chart.draw(table, { height: 250 }))();
    // 3. Afficher les cards
    afficherCardsTaches();
 }
@@ -74,7 +75,7 @@ function chargerEtAfficherDonneesDiagrammeEtCards() {
  * Permet de bâtir le DataTable que Google a besoin à partir
  * de notre base de données (DATA_TACHES). Les méthodes addColumn
  * et addRow du DataTable seront utiles pour cette fonction.
- * @returns {DataTable} La DataTable
+ * @returns {google.visualization.DataTable} La DataTable
  * @author Ulric Huot
  */
 function creerDonneesPourGraphique() {
