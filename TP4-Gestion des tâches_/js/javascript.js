@@ -1,5 +1,5 @@
 "use strict";
-/* global DATA_TACHES, creerCard, $li $new, google */
+/* global DATA_TACHES, creerCard, $id, $li, google */
 const { DataTable, Gantt } = google.visualization;
 
 let bouton = true;
@@ -10,6 +10,7 @@ let bouton = true;
  * méthodes de base de google.charts (soit load et setOnLoadCallback
  * qui va appeler notre fonction chargerEtAfficherDonneesDiagrammeEtCards
  * une fois que la librairie JavaScript de Google est prêt). Voir la documentation.
+ * @author Ulric Huot
  */
 function initialisation() {
    google.charts.load("current", { packages: ["corechart"], callback: chargerEtAfficherDonneesDiagrammeEtCards });
@@ -57,12 +58,14 @@ function afficherCardsTaches() {
  * les cards en appelant la fonction afficherCardsTaches.
  * Cette fonction est appelée lorsque la bibliothèque de
  * base de Google est complètement chargée.
+ * @author Ulric Huot
  */
 function chargerEtAfficherDonneesDiagrammeEtCards() {
    // 1. Charger les données pour le graphique
    let table = creerDonneesPourGraphique();
    // 2. Créer le graphique
-   let chart = new Gantt(/* stuff here */);
+   let chart = new Gantt($id("graphique"));
+   chart.draw(table, { height: 400 });
    // 3. Afficher les cards
    afficherCardsTaches();
 }
@@ -72,6 +75,7 @@ function chargerEtAfficherDonneesDiagrammeEtCards() {
  * de notre base de données (DATA_TACHES). Les méthodes addColumn
  * et addRow du DataTable seront utiles pour cette fonction.
  * @returns {DataTable} La DataTable
+ * @author Ulric Huot
  */
 function creerDonneesPourGraphique() {
    let table = new DataTable();
