@@ -62,6 +62,7 @@ function chargerEtAfficherDonneesDiagrammeEtCards() {
    // 2. Créer le graphique
    let chart = new Gantt(/* stuff here */);
    // 3. Afficher les cards
+   afficherCardsTaches();
 }
 
 /**
