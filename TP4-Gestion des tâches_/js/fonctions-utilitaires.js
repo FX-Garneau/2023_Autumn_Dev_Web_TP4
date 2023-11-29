@@ -21,7 +21,7 @@ function convertirMillisecondesEnJours(pNbMillisecondes) { }
  * @param {string} pTitre recois le titre du card
  * @param {string} pDescription recois la description
  * @param {boolean} pEstAvecBouton  s'il y a un bouton ou non
- * @param {*} pElementHtmlBouton je ne sais pas
+ * @param {Element} pElementHtmlBouton je ne sais pas
  * @returns {Element} retourne la div contenat le card
  */
 function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBouton) {
@@ -42,11 +42,7 @@ function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBou
       CardBody.classList.add("card-body");
       h2.textContent = pTitre;
       h2.className = "card-title";
-      //body du card:
-      let CardBody = document.createElement("div");
-      CardBody.classList.add("card-body");
-      h2.textContent = pTitre;
-      h2.className = "card-title";
+
 
       // footer du card:
       let cardFooter = document.createElement("div");
@@ -73,8 +69,15 @@ function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBou
       divContentLECard.appendChild(cardFooter);
       return divContentLECard;
    }
-   CardBody.appendChild(ul);
-   divContentLECard.appendChild(cardFooter);
-   return divContentLECard;
 }
-}
+
+/**
+ * @type {(tag: string) => HTMLElement} 
+ */
+const $new = document.createElement.bind(document);
+/**
+ * Crée un <li> avec le texte spécifié
+ * @param {string} text textContent
+ * @returns {HTMLElement} Le <li>
+ */
+const $li = (text) => { let e = $new("li"); e.textContent = text; return e; };

@@ -1,5 +1,5 @@
 "use strict";
-/* global DATA_TACHES, creerCard */
+/* global DATA_TACHES, creerCard, $li, $new */
 let bouton = true;
 
 /**
@@ -23,35 +23,27 @@ function initialisation() {
  */
 function afficherCardsTaches() {
    let DivCard = document.getElementById("LesCards");
+   let ul = document.createElement("ul");
 
+   // la descrition
    for (let data of DATA_TACHES.detailsTache) {
-      let Htmlbouton = creerBoutonHTmlS();
-      let description = creeDesCriptionCard();
+      ul.append($li(data.id), $li(data.titre), $li(data.dateDebut));
+
+      let boutonHtml = document.createElement("bouton");
+      boutonHtml.className = "btn btn-warning";
+      boutonHtml.textContent = "Supprimer";
       let titre = data.id + data.titre;
       DivCard.appendChild(
          creerCard(
             "./images/check2-square.svg",
             titre,
-            description,
+            ul,
             bouton,
-            Htmlbouton
+            boutonHtml
          )
       );
    }
-   for (let data of DATA_TACHES.detailsTache) {
-      let Htmlbouton = creerBoutonHTmlS();
-      let description = creeDesCriptionCard();
-      let titre = data.id + data.titre;
-      DivCard.appendChild(
-         creerCard(
-            "./images/check2-square.svg",
-            titre,
-            description,
-            bouton,
-            Htmlbouton
-         )
-      );
-   }
+
 }
 
 /**
@@ -118,44 +110,13 @@ function verifierSiDependanceExiste(pIdTache) { }
  */
 function supprimerTache(e) { }
 
-/**
- *
- * @returns retourne le bouton
- */
-function creerBoutonHTmlS() {
-   let bouton = document.createElement("bouton");
-   bouton.className = "btn btn-warning";
-   bouton.textContent = "Supprimer";
-   return bouton;
-}
 
 /**
  * creer les li
  * @returns retourne un vecteur de li
  */
 function creeDesCriptionCard() {
-   let vecLi = [];
-   let ul = document.createElement("ul");
-   let vecLi = [];
-   let ul = document.createElement("ul");
 
-   for (let data of DATA_TACHES.detailsTache) {
-      let li = document.createElement("li");
-      // en dvp
-      li.textContent = "";
-
-      li.textContent = data.id;
-
-      ul.appendChild(li);
-      li.textContent = "";
-
-      li.textContent = data.titre;
-      ul.appendChild(li);
-      li.textContent = "";
-
-      ul.appendChild(li);
-      li.textContent = data.dateDebut;
-   }
    return ul;
 }
 
