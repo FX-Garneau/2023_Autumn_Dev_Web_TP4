@@ -83,7 +83,7 @@ function creerDonneesPourGraphique() {
       table.addColumn(tache.type, tache.titreTache);
 
    for (let tache of DATA_TACHES.detailsTache)
-      table.addRow([tache.id, tache.titre, tache.dateDebut, tache.dateFin, tache.dureeEnNbJours, tache.pctComplete, tache.dependances.join()]);
+      table.addRow([tache.id, tache.titre, tache.dateDebut, tache.dateFin, tache.dureeEnNbJours, tache.pctComplete, tache.dependances?.join() ?? ""]);
 
    return table;
 }
