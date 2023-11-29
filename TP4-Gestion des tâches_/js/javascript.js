@@ -1,5 +1,5 @@
 "use strict";
-/* global DATA_TACHES, creerCard*/
+/* global DATA_TACHES, creerCard */
 let bouton = true;
 
 /**
@@ -24,20 +24,20 @@ function initialisation() {
 function afficherCardsTaches() {
    let DivCard = document.getElementById("LesCards");
 
-  for (let data of DATA_TACHES.detailsTache) {
-    let Htmlbouton = creerBoutonHTmlS();
-    let description = creeDesCriptionCard();
-    let titre = data.id + data.titre;
-    DivCard.appendChild(
-      creerCard(
-        "./images/check2-square.svg",
-        titre,
-        description,
-        bouton,
-        Htmlbouton
-      )
-    );
-  }
+   for (let data of DATA_TACHES.detailsTache) {
+      let Htmlbouton = creerBoutonHTmlS();
+      let description = creeDesCriptionCard();
+      let titre = data.id + data.titre;
+      DivCard.appendChild(
+         creerCard(
+            "./images/check2-square.svg",
+            titre,
+            description,
+            bouton,
+            Htmlbouton
+         )
+      );
+   }
 }
 
 /**
@@ -122,24 +122,24 @@ function creerBoutonHTmlS() {
  * @returns retourne un vecteur de li
  */
 function creeDesCriptionCard() {
-  let vecLi = [];
-  let ul = document.createElement("ul");
+   let vecLi = [];
+   let ul = document.createElement("ul");
 
-  for (let data of DATA_TACHES.detailsTache) {
-    let li = document.createElement("li");
-    // en dvp
-    li.textContent = "";
-    li.textContent = data.id;
-    ul.appendChild(li);
-    li.textContent = "";
-    li.textContent = data.titre;
-    ul.appendChild(li);
-    li.textContent = "";
+   for (let data of DATA_TACHES.detailsTache) {
+      let li = document.createElement("li");
+      // en dvp
+      li.textContent = "";
+      li.textContent = data.id;
+      ul.appendChild(li);
+      li.textContent = "";
+      li.textContent = data.titre;
+      ul.appendChild(li);
+      li.textContent = "";
 
-    li.textContent = data.dateDebut;
-  }
-  return ul;
+      li.textContent = data.dateDebut;
+   }
+   return ul;
 }
--function verifierSiDependanceExiste() {};
+-function verifierSiDependanceExiste() { };
 
 window.addEventListener("load", initialisation);
