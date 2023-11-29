@@ -1,5 +1,5 @@
 "use strict";
-/* global DATA_TACHES*/
+/* global DATA_TACHES, supprimerTache*/
 /**
  * Fonction qui convertit un nombre de jours en millisecondes et le retourne.
  * @param {number} pNbJours
@@ -20,7 +20,7 @@ function convertirMillisecondesEnJours(pNbMillisecondes) { }
  * @param {string} pImage resoit l'image
  * @param {string} pTitre recois le titre du card
  * @param {string} pDescription recois la description
- * @param {boolean} pEstAvecBouton  s'il y a un bouton ou non
+ * @param {boolean} pEstAvecBouton  s'il y a un bou   ton ou non
  * @param {Element} pElementHtmlBouton le code du bouton
  * @returns {Element} retourne la div contenat le card
  */
@@ -31,7 +31,6 @@ function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBou
 
       let divContentLECard = document.createElement("div");
       divContentLECard.className = "card w-50";
-
       // header du card:
       let CardHeader = document.createElement("div");
       CardHeader.className = "card-header";
@@ -54,6 +53,7 @@ function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBou
       CardBody.appendChild(h2);
       CardBody.appendChild(pDescription);
 
+      pElementHTMLBouton.addEventListener('click', supprimerTache());
       // footer du card:
       let cardFooter = document.createElement("div");
       cardFooter.className = "card-footer";

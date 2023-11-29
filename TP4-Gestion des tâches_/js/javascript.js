@@ -1,4 +1,7 @@
 "use strict";
+
+const { Button } = require("bootstrap");
+
 /* global DATA_TACHES, creerCard, $li, $new */
 let bouton = true;
 
@@ -12,6 +15,8 @@ let bouton = true;
 function initialisation() {
    afficherCardsTaches();
    chargerEtAfficherDonneesDiagrammeEtCards();
+   let BtnSupprimer = document.getElementById('BtnSupprimer');
+
 }
 
 /**
@@ -33,6 +38,8 @@ function afficherCardsTaches() {
       let boutonHtml = document.createElement("bouton");
       boutonHtml.className = "btn btn-warning";
       boutonHtml.textContent = "Supprimer";
+      boutonHtml.setAttribute("type", "Button");
+      boutonHtml.setAttribute(data.id);
       let titre = data.id + data.titre;
       DivCard.appendChild(
          creerCard(
