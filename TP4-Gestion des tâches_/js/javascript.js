@@ -1,5 +1,7 @@
 "use strict";
-/* global DATA_TACHES, creerCard, $li, $new */
+/* global DATA_TACHES, creerCard, $li $new, google */
+const { DataTable, Gantt } = google.visualization;
+
 let bouton = true;
 
 /**
@@ -10,8 +12,7 @@ let bouton = true;
  * une fois que la librairie JavaScript de Google est prêt). Voir la documentation.
  */
 function initialisation() {
-   afficherCardsTaches();
-   chargerEtAfficherDonneesDiagrammeEtCards();
+   google.charts.load("current", { packages: ["corechart"], callback: chargerEtAfficherDonneesDiagrammeEtCards });
 }
 
 /**
@@ -54,14 +55,31 @@ function afficherCardsTaches() {
  * Cette fonction est appelée lorsque la bibliothèque de
  * base de Google est complètement chargée.
  */
-function chargerEtAfficherDonneesDiagrammeEtCards() { }
+function chargerEtAfficherDonneesDiagrammeEtCards() {
+   // 1. Charger les données pour le graphique
+   let table = creerDonneesPourGraphique();
+   // 2. Créer le graphique
+   let chart = new Gantt(/* stuff here */);
+   // 3. Afficher les cards
+}
 
 /**
  * Permet de bâtir le DataTable que Google a besoin à partir
  * de notre base de données (DATA_TACHES). Les méthodes addColumn
  * et addRow du DataTable seront utiles pour cette fonction.
+ * @returns {DataTable} La DataTable
  */
-function creerDonneesPourGraphique() { }
+function creerDonneesPourGraphique() {
+   let table = new DataTable();
+
+   for (let tache of DATA_TACHES.taches)
+      table.addColumn(tache.type, tache.titreTache);
+
+   for (let tache of DATA_TACHES.detailsTache)
+      table.addRow([tache.id, tache.titre, tache.dateDebut, tache.dateFin, tache.dureeEnNbJours, tache.pctComplete, tache.dependances.join()]);
+
+   return table;
+}
 
 /**
  * Fonction exécutée (déclenchée par l’événement SELECT du diagramme de Gantt)

@@ -4,13 +4,17 @@
  * Fonction qui convertit un nombre de jours en millisecondes et le retourne.
  * @param {number} pNbJours
  */
-function convertirJoursEnMillisecondes(pNbJours) { }
+function convertirJoursEnMillisecondes(pNbJours) {
+   return pNbJours * 24 * 60 * 60 * 1000;
+}
 
 /**
  * Fonction qui convertit un nombre de millisecondes en jours et le retourne.
  * @param {number} pNbMillisecondes
  */
-function convertirMillisecondesEnJours(pNbMillisecondes) { }
+function convertirMillisecondesEnJours(pNbMillisecondes) {
+   return pNbMillisecondes / 24 / 60 / 60 / 1000;
+}
 
 /**
  * Créer la structure HTML pour afficher une card à partir
