@@ -11,7 +11,6 @@
 ## Ulric :
 
 (etudiant 2)
-• initialisation
 • Utiliser une fenêtre modale Bootstrap 5
 qui contient un formulaire pour éditer les
 données d’une tâche
@@ -20,8 +19,7 @@ meDeGantt
 • sauvegarderChangementsTache +
 Utilisation d’une fonction anonyme ou
 fléchée
-• supprimerTache (utilisation d’un attribut
-HMTL personnalisé)
+
 • calculerAvancement
 • arreterMinuterie
 • ajusterAvancementTacheSelonMinuterie
@@ -31,26 +29,27 @@ HMTL personnalisé)
 ## George :
 
 (etudiant 1)
+
+### en cours :
+
+• Créer une animation sur l’affichage des
+cards
+
+### taches fini :
+
 • initialisation
+• supprimerTache (utilisation d’un attribut
+HMTL personnalisé)
 • creerDonneesPourGraphique
 • chargerEtAfficherDonneesDiagrammeEtCa
 rds
-
 • Rafraîchir l’affichage du diagramme lors
 de l’événement « resize » de la fenêtre +  
 Utilisation d’une fonction anonyme ou
 fléchée
-• Créer une animation sur l’affichage des
-cards
-
-### en cours :
-
 • verifierSiDependanceExiste
 • supprimerTache (utilisation d’un attribut
 HMTL personnalisé)
-
-### taches fini :
-
 • afficherCardsTaches
 • creerCard
 
