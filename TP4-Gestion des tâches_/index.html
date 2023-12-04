@@ -26,6 +26,66 @@
       <!-- si tu chande de balise ou whatever garde l'id stp j'en ai besoin pour les card-->
       <div id="LesCards" class="d-flex justify-content-between "></div>
 
+      <!-- Fenetre Modale-->
+      <div class="modal fade" id="modal">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h1>Ediotion d'une Tache</h1>
+            </div>
+            <div class="modal-body">
+               <form action="">
+                  <label for="Idtask" class="form-label">ID:</label>
+                  <input type="text" class="form-control" id="Idtask">
+                  <label for="Nom" class="form-label">Nom de la tache</label>
+                  <input type="text" class="form-control" id="Nom">
+                  <div class=" d-flex justify-content-between flex-wrap">
+                     <div class="w-50">
+                        <label for="Datedebut" class="form-label">Date de debut</label>
+                        <input type="datetime" id="Datedebut" class="form-control">
+                     </div>
+                     <div class="w-50">
+                        <label for="dateFin" class="form-label">Date de fin</label>
+                        <input type="datetime" class="form-control" di="dateFin">
+                     </div>
+                     <div class="w-25">
+                        <label for="nbjours" class="form-label">Nombre de jours estimer</label>
+                        <input type="number" class="form-control" id="nbjours">
+                     </div>
+                     <div class="w-25">
+                        <label for="real" class="form-label">Realisation(temps)</label>
+                        <input type="number" id="real" class="form-control">
+                     </div>
+                     <div class="w-25">
+                        <label for="avance" class="form-label">Avamcement</label>
+                        <input type="number" class="form-control" id="avance">
+                     </div>
+                     <div class="w-50">
+                        <button id="start" class="btn"><img src="" alt=""></button>
+                     </div>
+                     <div class="w-50">
+                        <button id="end" class="btn"><img src="" alt=""></button>
+                     </div>
+                     <div class="w-100">
+                        <label for="dependance" class="form-label">dependance</label>
+                        <input type="text" class="form-control" id="dependance">
+                     </div>
+                  </div>
+               </form>
+            </div>
+            <div class="modal-footer">
+               <div class="d-flex justify-content-end">
+                  <div class="w-25">
+                     <button class="btn btn-warning">Fermer</button>
+                  </div>
+                  <div class="w-75">
+                     <button class="btn btn-secondary">sauvegarder les changement</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+      </div>
+
    </main>
 
    <script src="js/data-taches.js"></script>
