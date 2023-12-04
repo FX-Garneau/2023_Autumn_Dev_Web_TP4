@@ -21,7 +21,7 @@ let minuterie;
  */
 function initialisation() {
    google.charts.load("current", { packages: ["gantt"], callback: chargerEtAfficherDonneesDiagrammeEtCards });
-
+   google.chart.addEventListener("select", recupererTacheSelectionneeDansDiagrammeDeGantt());
 
 }
 
@@ -108,8 +108,35 @@ function creerDonneesPourGraphique() {
  */
 function recupererTacheSelectionneeDansDiagrammeDeGantt() {
    let selection = chart.getSelection()[0];
-   let tache = table.getRowProperties(selection.row); // retourne null jsp pourquoi
+   let tache = table.getRowProperties(); // retourne null jsp pourquoi
    console.log(tache);
+
+
+   let IdTask = document.getElementById("IdTask");
+   IdTask.textContent = tache.id;
+
+   let NomTache = document.getElementById("Nom");
+   NomTache.textContent = tache.titre;
+
+   let datedebut = document.getElementById("Datedebut");
+   datedebut.textContent = tache.dateDebut;
+
+   let dateFin = document.getElementById("dateFin");
+   dateFin.textContent = tache.dateFin;
+
+   let nbjours = document.getElementById("nbjours");
+   nbjours.textContent = tache.dureeEnNbJours;
+
+   // a voir je suis pas sur encore
+   let pctComplete = document.getElementById("real");
+   pctComplete.textContent = tache.pctComplete;
+
+   let avancement = document.getElementById("avance");
+   avancement.textContent = tache.pctComplete;
+
+   let dependances = document.getElementById("dependance");
+   dependances.textContent = tache.dependances;
+
 }
 
 /**

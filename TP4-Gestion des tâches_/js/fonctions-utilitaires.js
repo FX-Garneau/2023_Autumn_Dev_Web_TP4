@@ -77,6 +77,7 @@ function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBou
 
 }
 
+
 /**
  * @type {(tag: string) => HTMLElement} 
  */
