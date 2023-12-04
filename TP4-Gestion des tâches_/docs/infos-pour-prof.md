@@ -20,17 +20,17 @@ meDeGantt
 Utilisation d’une fonction anonyme ou
 fléchée
 
-• calculerAvancement
-• arreterMinuterie
-• ajusterAvancementTacheSelonMinuterie
-• convertirJoursEnMillisecondes
-• convertirMillisecondesEnJours
-
 ## George :
 
 (etudiant 1)
 
 ### en cours :
+
+• calculerAvancement
+• arreterMinuterie
+• ajusterAvancementTacheSelonMinuterie
+• convertirJoursEnMillisecondes
+• convertirMillisecondesEnJours
 
 • Créer une animation sur l’affichage des
 cards

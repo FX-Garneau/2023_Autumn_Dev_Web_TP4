@@ -7,6 +7,10 @@ let chart;
 /** @type {google.visualization.DataTable} */
 let table;
 
+/** @type {NodeJS.Timeout | null} */
+let minuterie;
+
+
 /**
  * Fonction exécutée après que le DOM HTML soit
  * chargé. Dans cette fonction, on va en profiter pour lancer les
@@ -17,6 +21,8 @@ let table;
  */
 function initialisation() {
    google.charts.load("current", { packages: ["gantt"], callback: chargerEtAfficherDonneesDiagrammeEtCards });
+
+
 }
 
 /**
@@ -114,10 +120,15 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
  * nombre de jours estimé.). On anime finalement une progressBar
  * (composant Bootstrap) en appliquant dynamiquement un style (width: X%)
  */
-function calculerAvancement() { }
+function calculerAvancement() {
+
+}
 
 /** Arrête la minuterie. */
-function arreterMinuterie() { }
+function arreterMinuterie() {
+   clearInterval(minuterie);
+   minuterie = null;
+}
 
 /**
  * Mettre à jour les données du DataTable du diagramme de Gantt.
