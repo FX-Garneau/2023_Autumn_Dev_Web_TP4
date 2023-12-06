@@ -11,11 +11,7 @@
 ## Ulric :
 
 (etudiant 2)
-• Utiliser une fenêtre modale Bootstrap 5
-qui contient un formulaire pour éditer les
-données d’une tâche
-• recupererTacheSelectionneeDansDiagram
-meDeGantt
+
 • sauvegarderChangementsTache +
 Utilisation d’une fonction anonyme ou
 fléchée
@@ -52,6 +48,11 @@ fléchée
 HMTL personnalisé)
 • afficherCardsTaches
 • creerCard
+• Utiliser une fenêtre modale Bootstrap 5
+qui contient un formulaire pour éditer les
+données d’une tâche
+• recupererTacheSelectionneeDansDiagram
+meDeGantt
 
 # Les couleurs choisies
 

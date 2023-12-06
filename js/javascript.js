@@ -10,7 +10,6 @@ let table;
 /** @type {NodeJS.Timeout | null} */
 let minuterie;
 
-
 /**
  * Fonction exécutée après que le DOM HTML soit
  * chargé. Dans cette fonction, on va en profiter pour lancer les
@@ -21,8 +20,6 @@ let minuterie;
  */
 function initialisation() {
    google.charts.load("current", { packages: ["gantt"], callback: chargerEtAfficherDonneesDiagrammeEtCards });
-   google.chart.addEventListener("select", recupererTacheSelectionneeDansDiagrammeDeGantt());
-
 }
 
 /**
@@ -111,7 +108,7 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
    let tache = table.getRowProperties(); // retourne null jsp pourquoi
    console.log(tache);
 
-
+   document.getElementById("btn-start").addEventListener("click",avancement);
    let IdTask = document.getElementById("IdTask");
    IdTask.textContent = tache.id;
 
@@ -132,7 +129,9 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
    pctComplete.textContent = tache.pctComplete;
 
    let avancement = document.getElementById("avance");
+   
    avancement.textContent = tache.pctComplete;
+
 
    let dependances = document.getElementById("dependance");
    dependances.textContent = tache.dependances;
@@ -148,6 +147,20 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
  * (composant Bootstrap) en appliquant dynamiquement un style (width: X%)
  */
 function calculerAvancement() {
+   let tempsEcouler = 0;
+   while(minuterie!=null)
+   {
+      if(document.getElementById("end").addEventListener("click",arreterMinuterie))
+      tempsEcouler ++;
+   }
+   let tempsEnjours =0;
+
+   tempsEnjours = tempsEcouler/1000;
+
+document.getElementById("avancement").textContent=tempsEnjours;   
+
+
+
 
 }
 
