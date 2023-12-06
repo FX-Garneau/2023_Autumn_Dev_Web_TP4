@@ -114,12 +114,8 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
    for (let i = 0; i < props.length; i++)
       tache[props[i]] = table.getValue(selection.row, i);
 
-   for (let i = 0; i < props.length; i++) {
-      var id = "tache-" + props[i];
-      let element = document.getElementById(id);
-      if (!element) console.log(id);
-      element.textContent = tache[props[i]];
-   }
+   for (let i = 0; i < props.length; i++)
+      document.getElementById("tache-" + props[i]).textContent = tache[props[i]];
 
    modal.show();
    document.getElementById("btn-start").addEventListener("click", calculerAvancement);
@@ -137,19 +133,19 @@ function calculerAvancement() {
    let progressBar = document.getElementById("progress");
    let tempsMax = 10;
    let interval = setInterval(() => {
-      let tempsEnjours = 0; 
+      let tempsEnjours = 0;
       document.getElementById("avancement").textContent = tempsEnjours;
-  
-      for(let i=0;i<tempsMax;i++)
-       progressBar.setAttribute("style:",Math.round(i)+"0%");
 
-      if(tempsEnjours==tempsMax)
+      for (let i = 0; i < tempsMax; i++)
+         progressBar.setAttribute("style:", Math.round(i) + "0%");
+
+      if (tempsEnjours == tempsMax)
          alert("la tache a etais completer");
       else
          tempsEnjours++;
-    
 
-         
+
+
    }, 1000);
 
 
