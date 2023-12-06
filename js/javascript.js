@@ -1,4 +1,6 @@
 "use strict";
+
+
 /* global DATA_TACHES, creerCard, $id, $li, google, bootstrap */
 
 let bouton = true;
@@ -9,7 +11,7 @@ let table;
 /** @type {NodeJS.Timeout | null} */
 let minuterie;
 
-const modal = new bootstrap.Modal(document.getElementById("modal"), { keyboard: false, backdrop: "static" });
+const modal = new bootstrap.Modal($id("modal"));
 
 /**
  * Fonction exécutée après que le DOM HTML soit
@@ -112,8 +114,12 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
    for (let i = 0; i < props.length; i++)
       tache[props[i]] = table.getValue(selection.row, i);
 
-   for (let i = 0; i < props.length; i++)
-      document.getElementById("tache-" + props[i]).textContent = tache[props[i]];
+   for (let i = 0; i < props.length; i++) {
+      var id = "tache-" + props[i];
+      let element = document.getElementById(id);
+      if (!element) console.log(id);
+      element.textContent = tache[props[i]];
+   }
 
    modal.show();
    document.getElementById("btn-start").addEventListener("click", calculerAvancement);
@@ -128,18 +134,23 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
  * (composant Bootstrap) en appliquant dynamiquement un style (width: X%)
  */
 function calculerAvancement() {
-   let tempsEcouler = 0;
-   while (minuterie != null) {
-      if (document.getElementById("end").addEventListener("click", arreterMinuterie))
-         tempsEcouler++;
-   }
-   let tempsEnjours = 0;
+   let progressBar = document.getElementById("progress");
+   let tempsMax = 10;
+   let interval = setInterval(() => {
+      let tempsEnjours = 0; 
+      document.getElementById("avancement").textContent = tempsEnjours;
+  
+      for(let i=0;i<tempsMax;i++)
+       progressBar.setAttribute("style:",Math.round(i)+"0%");
 
-   tempsEnjours = tempsEcouler / 1000;
+      if(tempsEnjours==tempsMax)
+         alert("la tache a etais completer");
+      else
+         tempsEnjours++;
+    
 
-   document.getElementById("avancement").textContent = tempsEnjours;
-
-
+         
+   }, 1000);
 
 
 }

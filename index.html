@@ -45,30 +45,33 @@
             </div>
             <div class="modal-body">
                <form action="">
-                  <label for="tache-idstack" class="form-label">ID:</label>
-                  <input type="text" class="form-control" id="tache-idstack">
-                  <label for="tache-nom" class="form-label">Nom de la tache</label>
-                  <input type="text" class="form-control" id="tache-nom">
+                  <label for="tache-id" class="form-label">ID:</label>
+                  <input type="text" class="form-control" id="tache-id">
+                  <label for="tache-titre" class="form-label">Nom de la tache</label>
+                  <input type="text" class="form-control" id="tache-titre">
                   <div class=" d-flex justify-content-between flex-wrap">
                      <div class="w-50">
-                        <label for="tache-datedebut" class="form-label">Date de debut</label>
-                        <input type="datetime" id="tache-datedebut" class="form-control">
+                        <label for="tache-dateDebut" class="form-label">Date de debut</label>
+                        <input type="datetime" id="tache-dateDebut" class="form-control">
                      </div>
                      <div class="w-50">
-                        <label for="tache-datefin" class="form-label">Date de fin</label>
-                        <input type="datetime" class="form-control" di="tache-datefin">
+                        <label for="tache-dateFin" class="form-label">Date de fin</label>
+                        <input type="datetime" class="form-control" id="tache-dateFin">
                      </div>
                      <div class="w-25">
-                        <label for="tache-nbjours" class="form-label">Nombre de jours estimer</label>
-                        <input type="number" class="form-control" id="tache-nbjours">
+                        <label for="tache-dureeEnNbJours" class="form-label">Nombre de jours estimer</label>
+                        <input type="number" class="form-control" id="tache-dureeEnNbJours">
                      </div>
                      <div class="w-25">
-                        <label for="tache-real" class="form-label">Realisation(temps)</label>
-                        <input type="number" id="tache-real" class="form-control">
+                        <label for="tache-pctComplete" class="form-label">Realisation(temps)</label>
+                        <input type="number" id="tache-pctComplete" class="form-control">
                      </div>
                      <div class="w-25">   
-                        <label for="tache-avance" class="form-label">Avamcement</label>
+                        <label for="tache-avance" class="form-label">Avancement</label>
                         <input type="number" class="form-control" id="tache-avance">
+                        <div class="progress">
+                           <div class="progress-bar progress-bar-animated" role="progressbar" id="progress"></div>
+                        </div>
                      </div>
                      <div class="w-50">
                         <button id="btn-start" class="btn btn-success"><img src="" alt=""></button>
@@ -77,8 +80,8 @@
                         <button id="end" class="btn"><img src="" alt=""></button>
                      </div>
                      <div class="w-100">
-                        <label for="dependance" class="form-label">dependance</label>
-                        <input type="text" class="form-control" id="dependance">
+                        <label for="tache-dependances" class="form-label">dependance</label>
+                        <input type="text" class="form-control" id="tache-dependances">
                      </div>
                   </div>
                </form>
