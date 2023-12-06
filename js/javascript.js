@@ -1,14 +1,15 @@
 "use strict";
-/* global DATA_TACHES, creerCard, $id, $li, google */
+/* global DATA_TACHES, creerCard, $id, $li, google, bootstrap */
 
 let bouton = true;
 /** @type {google.visualization.Gantt} */
 let chart;
 /** @type {google.visualization.DataTable} */
 let table;
-
 /** @type {NodeJS.Timeout | null} */
 let minuterie;
+
+const modal = new bootstrap.Modal(document.getElementById("modal"), { keyboard: false, backdrop: "static" });
 
 /**
  * Fonction exécutée après que le DOM HTML soit
@@ -105,37 +106,17 @@ function creerDonneesPourGraphique() {
  */
 function recupererTacheSelectionneeDansDiagrammeDeGantt() {
    let selection = chart.getSelection()[0];
-   let tache = table.getRowProperties(); // retourne null jsp pourquoi
-   console.log(tache);
+   if (!selection) return;
 
-   document.getElementById("btn-start").addEventListener("click",avancement);
-   let IdTask = document.getElementById("IdTask");
-   IdTask.textContent = tache.id;
+   let tache = {}, props = Object.keys(DATA_TACHES.detailsTache[0]);
+   for (let i = 0; i < props.length; i++)
+      tache[props[i]] = table.getValue(selection.row, i);
 
-   let NomTache = document.getElementById("Nom");
-   NomTache.textContent = tache.titre;
+   for (let i = 0; i < props.length; i++)
+      document.getElementById("tache-" + props[i]).textContent = tache[props[i]];
 
-   let datedebut = document.getElementById("Datedebut");
-   datedebut.textContent = tache.dateDebut;
-
-   let dateFin = document.getElementById("dateFin");
-   dateFin.textContent = tache.dateFin;
-
-   let nbjours = document.getElementById("nbjours");
-   nbjours.textContent = tache.dureeEnNbJours;
-
-   // a voir je suis pas sur encore
-   let pctComplete = document.getElementById("real");
-   pctComplete.textContent = tache.pctComplete;
-
-   let avancement = document.getElementById("avance");
-   
-   avancement.textContent = tache.pctComplete;
-
-
-   let dependances = document.getElementById("dependance");
-   dependances.textContent = tache.dependances;
-
+   modal.show();
+   document.getElementById("btn-start").addEventListener("click", calculerAvancement);
 }
 
 /**
@@ -148,16 +129,15 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
  */
 function calculerAvancement() {
    let tempsEcouler = 0;
-   while(minuterie!=null)
-   {
-      if(document.getElementById("end").addEventListener("click",arreterMinuterie))
-      tempsEcouler ++;
+   while (minuterie != null) {
+      if (document.getElementById("end").addEventListener("click", arreterMinuterie))
+         tempsEcouler++;
    }
-   let tempsEnjours =0;
+   let tempsEnjours = 0;
 
-   tempsEnjours = tempsEcouler/1000;
+   tempsEnjours = tempsEcouler / 1000;
 
-document.getElementById("avancement").textContent=tempsEnjours;   
+   document.getElementById("avancement").textContent = tempsEnjours;
 
 
 
