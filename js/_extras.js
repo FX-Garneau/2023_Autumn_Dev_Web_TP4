@@ -1,5 +1,5 @@
 "use strict";
-/* global DATA_TACHES */
+/* global DATA_TACHES, $id, minuterie, selected */
 
 /**
  * Permet de récupérer les tâches depuis le localStorage
@@ -17,7 +17,7 @@ function loadData() {
          DATA_TACHES.detailsTache = data.detailsTache;
       }
       console.log("Les données ont été chargées depuis le localStorage.");
-   } catch { return; }
+   } catch (error) { console.log(error); }
 }
 
 /**
@@ -34,4 +34,15 @@ function saveData() {
       localStorage.setItem("45jid7fy", btoa(JSON.stringify(data)));
       console.log("Les données ont été sauvegardées dans le localStorage.");
    } catch (error) { console.log(error); }
+}
+
+/**
+ * Rafraîchit les boutons start/stop du formulaire de la tâche.
+ */
+function updateButtons() {
+   let start = minuterie || DATA_TACHES.detailsTache[selected?.row]?.pctComplete >= 100;
+   let stop = !minuterie;
+   console.log("start:", start, "stop:", stop, DATA_TACHES.detailsTache[selected?.row]?.pctComplete, minuterie);
+   $id("btn-start").disabled = start;
+   $id("btn-end").disabled = stop;
 }
