@@ -30,15 +30,12 @@ function convertirMillisecondesEnJours(pNbMillisecondes) {
  * @returns {Element} retourne la div contenat le card
  */
 function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBouton) {
-
-
-   for (let data of DATA_TACHES.taches) {
-
+   for (let i = 0; i < DATA_TACHES.taches.length; i++) {
       let divContentLECard = document.createElement("div");
       divContentLECard.className = "card w-25 m-1";
       // header du card:
       let CardHeader = document.createElement("div");
-      CardHeader.className = "card-header";  
+      CardHeader.className = "card-header";
 
       let img = document.createElement("img");
       img.className = "card-image w-100";
@@ -46,7 +43,7 @@ function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBou
       divContentLECard.appendChild(CardHeader);
       CardHeader.appendChild(img);
 
-      //body du card:
+      // body du card:
       let CardBody = document.createElement("div");
       CardBody.classList.add("card-body");
 
@@ -69,14 +66,10 @@ function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBou
       img.src = pImage;
       img.alt = "photo de la card";
 
-
       divContentLECard.appendChild(cardFooter);
       return divContentLECard;
-
    }
-
 }
-
 
 /**
  * @type {(tag: string) => HTMLElement} 
