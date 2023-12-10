@@ -1,5 +1,5 @@
 "use strict";
-/* global DATA_TACHES, creerCard, $id, $li, google, bootstrap, loadData, saveData */
+/* global DATA_TACHES, creerCard, $id, $li, google, bootstrap, loadData, saveData, updateButtons */
 
 let bouton = true;
 /** @type {google.visualization.Gantt} */
@@ -34,7 +34,7 @@ function initialisation() {
  * propriétés d'une tâche.
  */
 function afficherCardsTaches() {
-   let divCard = document.getElementById("LesCards");
+   let divCard = $id("LesCards");
    let divFlex = document.createElement("div");
    dispatchEvent.className = "justify-content-between";
 
@@ -80,8 +80,6 @@ function chargerEtAfficherDonneesDiagrammeEtCards() {
    (window.onresize = () => chart.draw(table, { height: 250 }))();
    // 3. Afficher les cards
    afficherCardsTaches();
-
-
 }
 
 /**
@@ -113,22 +111,21 @@ function creerDonneesPourGraphique() {
 function recupererTacheSelectionneeDansDiagrammeDeGantt() {
    selected = chart.getSelection()[0];
    if (!selected) return;
-
+   // get data
    let tache = {}, props = Object.keys(DATA_TACHES.detailsTache[0]);
    for (let i = 0; i < props.length; i++)
       tache[props[i]] = table.getValue(selected.row, i);
-
+   // update visuals
    for (let i = 0; i < props.length; i++)
-      document.getElementById("tache-" + props[i]).value = tache[props[i]];
-
+      $id("tache-" + props[i]).value = tache[props[i]];
+   $id("tache-realisation").value = Math.round(tache.dureeEnNbJours * tache.pctComplete / 100);
+   // popup
    modal.show();
-
-
-   document.getElementById("btn-start").addEventListener("click", calculerAvancement);
-   document.getElementById("btn-end").addEventListener("click", arreterMinuterie);
-
-   document.getElementById("btn-end").addEventListener("click", arreterMinuterie);
-
+   // event listeners
+   $id("btn-start").addEventListener("click", calculerAvancement);
+   $id("btn-end").addEventListener("click", arreterMinuterie);
+   // extras
+   updateButtons();
 }
 
 /**
@@ -142,15 +139,15 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
  */
 function calculerAvancement() {
    if (minuterie) return;
-   let progressBar = document.getElementById("progress");
+   let progressBar = $id("progress");
 
    minuterie = setInterval(() => {
       const tache = DATA_TACHES.detailsTache[selected.row];
-      console.log(tache.pctComplete);
+      console.log(`[${tache.id}] pctComplete: ${tache.pctComplete.toString().padStart(3, " ")}%`);
       // error checks
-      if (!tache) return void alert("Aucune tâche sélectionnée!");
-      if (tache.pctComplete >= 100) return void alert("La tâche est terminée!");
-      if (tache.dureeEnNbJours < 0) return void alert("La durée de la tâche est invalide!");
+      if (!tache) return arreterMinuterie(), void alert("Aucune tâche sélectionnée!");
+      if (tache.pctComplete >= 100) return arreterMinuterie(), void alert("La tâche est terminée!");
+      if (tache.dureeEnNbJours < 0) return arreterMinuterie(), void alert("La durée de la tâche est invalide!");
       // update data
       const realisation = (tache.dureeEnNbJours * tache.pctComplete / 100) + 0.1;
       tache.pctComplete = Math.round(Math.max(0, Math.min(100, realisation / tache.dureeEnNbJours * 100)));
@@ -165,14 +162,17 @@ function calculerAvancement() {
          arreterMinuterie();
          setTimeout(alert, 10, "La tâche est terminée!");
       }
+      // extras
+      updateButtons();
    }, 100);
-   document.getElementById("btn-end").addEventListener("click", arreterMinuterie);
+   $id("btn-end").addEventListener("click", arreterMinuterie);
 }
 
 /** Arrête la minuterie. */
 function arreterMinuterie() {
    clearInterval(minuterie);
    minuterie = null;
+   updateButtons();
 }
 
 /**
