@@ -12,27 +12,25 @@
 
 (etudiant 2)
 
-• sauvegarderChangementsTache +
-Utilisation d’une fonction anonyme ou
-fléchée
-
 ## George :
 
 (etudiant 1)
 
 ### en cours :
 
-• calculerAvancement
-• arreterMinuterie
-• ajusterAvancementTacheSelonMinuterie
-• convertirJoursEnMillisecondes
-• convertirMillisecondesEnJours
-
 • Créer une animation sur l’affichage des
 cards
 
 ### taches fini :
 
+• sauvegarderChangementsTache +
+Utilisation d’une fonction anonyme ou
+fléchée
+• convertirJoursEnMillisecondes
+• convertirMillisecondesEnJours
+• calculerAvancement
+• arreterMinuterie
+• ajusterAvancementTacheSelonMinuterie
 • initialisation
 • supprimerTache (utilisation d’un attribut
 HMTL personnalisé)
