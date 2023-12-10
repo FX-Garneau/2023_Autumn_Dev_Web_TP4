@@ -1,6 +1,7 @@
 "use strict";
 
 
+
 /* global DATA_TACHES, creerCard, $id, $li, google, bootstrap */
 
 let bouton = true;
@@ -13,7 +14,7 @@ let minuterie;
 
 const modal = new bootstrap.Modal($id("modal"));
 
-/**
+/**   
  * Fonction exécutée après que le DOM HTML soit
  * chargé. Dans cette fonction, on va en profiter pour lancer les
  * méthodes de base de google.charts (soit load et setOnLoadCallback
@@ -120,7 +121,10 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
       document.getElementById("tache-" + props[i]).textContent = tache[props[i]];
 
    modal.show();
+
    document.getElementById("btn-start").addEventListener("click", calculerAvancement);
+   document.getElementById("btn-end").addEventListener("click",arreterMinuterie);
+   
 }
 
 /**
@@ -132,31 +136,35 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
  * (composant Bootstrap) en appliquant dynamiquement un style (width: X%)
  */
 function calculerAvancement() {
+
    let progressBar = document.getElementById("progress");
    let tempsMax = 10;
-   let interval = setInterval(() => {
-      let tempsEnjours = 0;
-      document.getElementById("avancement").textContent = tempsEnjours;
+   let tempsEnjours = 0;
+   
+    minuterie   = setInterval(() => {
 
-      for (let i = 0; i < tempsMax; i++)
-         progressBar.setAttribute("style:", Math.round(i) + "0%");
+      document.getElementById("btn-end").addEventListener("click",arreterMinuterie);
 
-      if (tempsEnjours == tempsMax)
-         alert("la tache a etais completer");
-      else
-         tempsEnjours++;
-
-
-
+       progressBar.setAttribute("style", Math.round((tempsEnjours / tempsMax) * 100) + "%");
+   
+       if (tempsEnjours >= tempsMax) {
+         arreterMinuterie();
+         alert("La tâche a été complétée");
+       } 
+       else 
+           tempsEnjours++;
+       
+      
+      
+       document.getElementById("tache-pctComplete").value=tempsEnjours;
+       document.getElementById("tache-avance").value = tempsEnjours;
    }, 1000);
-
 
 }
 
 /** Arrête la minuterie. */
 function arreterMinuterie() {
    clearInterval(minuterie);
-   minuterie = null;
 }
 
 /**
