@@ -34,6 +34,8 @@ function initialisation() {
  */
 function afficherCardsTaches() {
    let DivCard = document.getElementById("LesCards");
+   let DivFlex = document.createElement("div");
+   dispatchEvent.className = "justify-content-between";
 
    // la descrition
    for (let data of DATA_TACHES.detailsTache) {
