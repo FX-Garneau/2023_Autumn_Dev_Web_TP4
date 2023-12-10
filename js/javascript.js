@@ -135,7 +135,7 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
 function calculerAvancement() {
 
    let progressBar = document.getElementById("progress");
-   let tempsMax = 10;
+   let tempsMax = document.getElementById("tache-dureeEnNbJours").value;
    let tempsEnjours = 0;
    
     minuterie   = setInterval(() => {
