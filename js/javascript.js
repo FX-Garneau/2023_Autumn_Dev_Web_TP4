@@ -80,6 +80,8 @@ function chargerEtAfficherDonneesDiagrammeEtCards() {
    (window.onresize = () => chart.draw(table, { height: 250 }))();
    // 3. Afficher les cards
    afficherCardsTaches();
+
+
 }
 
 /**
@@ -117,11 +119,14 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
       tache[props[i]] = table.getValue(selected.row, i);
 
    for (let i = 0; i < props.length; i++)
-      document.getElementById("tache-" + props[i]).textContent = tache[props[i]];
+      document.getElementById("tache-" + props[i]).value = tache[props[i]];
 
    modal.show();
 
+
    document.getElementById("btn-start").addEventListener("click", calculerAvancement);
+   document.getElementById("btn-end").addEventListener("click", arreterMinuterie);
+
    document.getElementById("btn-end").addEventListener("click", arreterMinuterie);
 
 }
@@ -141,6 +146,7 @@ function calculerAvancement() {
 
    minuterie = setInterval(() => {
       const tache = DATA_TACHES.detailsTache[selected.row];
+      console.log(tache.pctComplete);
       // error checks
       if (!tache) return void alert("Aucune tâche sélectionnée!");
       if (tache.pctComplete >= 100) return void alert("La tâche est terminée!");
