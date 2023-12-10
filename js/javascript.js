@@ -22,7 +22,7 @@ const modal = new bootstrap.Modal($id("modal"));
  * @author Ulric Huot
  */
 function initialisation() {
-   // loadData();
+   loadData();
    google.charts.load("current", { packages: ["gantt"], callback: chargerEtAfficherDonneesDiagrammeEtCards });
 }
 
@@ -153,7 +153,7 @@ function calculerAvancement() {
       if (tache.dureeEnNbJours < 0) return void alert("La durée de la tâche est invalide!");
       // update data
       const realisation = (tache.dureeEnNbJours * tache.pctComplete / 100) + 0.1;
-      tache.pctComplete = Math.max(0, Math.min(100, realisation / tache.dureeEnNbJours * 100));
+      tache.pctComplete = Math.round(Math.max(0, Math.min(100, realisation / tache.dureeEnNbJours * 100)));
       // update visual
       $id("tache-realisation").value = Math.round(realisation);
       $id("tache-pctComplete").value = Math.round(tache.pctComplete);
@@ -181,10 +181,10 @@ function arreterMinuterie() {
  * vous seront utiles.
  */
 function sauvegarderChangementsTache() {
+   saveData();
    for (let i = 0; i < DATA_TACHES.detailsTache.length; i++)
       for (let j = 0; j < Object.keys(DATA_TACHES.detailsTache[i]).length; j++)
          table.setValue(i, j, DATA_TACHES.detailsTache[i][j]);
-   saveData();
 }
 
 /**
