@@ -8,6 +8,8 @@ let chart;
 let table;
 /** @type {NodeJS.Timeout | null} */
 let minuterie;
+/** @type {google.visualization.ChartSelection} */
+let selected;
 
 const modal = new bootstrap.Modal($id("modal"));
 
@@ -20,7 +22,7 @@ const modal = new bootstrap.Modal($id("modal"));
  * @author Ulric Huot
  */
 function initialisation() {
-   loadData();
+   // loadData();
    google.charts.load("current", { packages: ["gantt"], callback: chargerEtAfficherDonneesDiagrammeEtCards });
 }
 
@@ -107,12 +109,12 @@ function creerDonneesPourGraphique() {
  * @author Ulric Huot
  */
 function recupererTacheSelectionneeDansDiagrammeDeGantt() {
-   let selection = chart.getSelection()[0];
-   if (!selection) return;
+   selected = chart.getSelection()[0];
+   if (!selected) return;
 
    let tache = {}, props = Object.keys(DATA_TACHES.detailsTache[0]);
    for (let i = 0; i < props.length; i++)
-      tache[props[i]] = table.getValue(selection.row, i);
+      tache[props[i]] = table.getValue(selected.row, i);
 
    for (let i = 0; i < props.length; i++)
       document.getElementById("tache-" + props[i]).textContent = tache[props[i]];
@@ -120,8 +122,8 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
    modal.show();
 
    document.getElementById("btn-start").addEventListener("click", calculerAvancement);
-   document.getElementById("btn-end").addEventListener("click",arreterMinuterie);
-   
+   document.getElementById("btn-end").addEventListener("click", arreterMinuterie);
+
 }
 
 /**
@@ -131,37 +133,40 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
  * On calcule ensuite le % d'avancement (nb jours réalisés sur le
  * nombre de jours estimé.). On anime finalement une progressBar
  * (composant Bootstrap) en appliquant dynamiquement un style (width: X%)
+ * @author Georgi, Ulric Huot
  */
 function calculerAvancement() {
-
+   if (minuterie) return;
    let progressBar = document.getElementById("progress");
-   let tempsMax = 10;
-   let tempsEnjours = 0;
-   
-    minuterie   = setInterval(() => {
 
-      document.getElementById("btn-end").addEventListener("click",arreterMinuterie);
-
-       progressBar.setAttribute("style", Math.round((tempsEnjours / tempsMax) * 100) + "%");
-   
-       if (tempsEnjours >= tempsMax) {
+   minuterie = setInterval(() => {
+      const tache = DATA_TACHES.detailsTache[selected.row];
+      // error checks
+      if (!tache) return void alert("Aucune tâche sélectionnée!");
+      if (tache.pctComplete >= 100) return void alert("La tâche est terminée!");
+      if (tache.dureeEnNbJours < 0) return void alert("La durée de la tâche est invalide!");
+      // update data
+      const realisation = (tache.dureeEnNbJours * tache.pctComplete / 100) + 0.1;
+      tache.pctComplete = Math.max(0, Math.min(100, realisation / tache.dureeEnNbJours * 100));
+      // update visual
+      $id("tache-realisation").value = Math.round(realisation);
+      $id("tache-pctComplete").value = Math.round(tache.pctComplete);
+      progressBar.style.width = tache.pctComplete.toFixed(2) + "%";
+      // save data
+      sauvegarderChangementsTache();
+      // check if task is completed
+      if (tache.pctComplete >= 100 || realisation >= tache.dureeEnNbJours) {
          arreterMinuterie();
-         alert("La tâche a été complétée");
-       } 
-       else 
-           tempsEnjours++;
-       
-      
-      
-       document.getElementById("tache-pctComplete").value=tempsEnjours;
-       document.getElementById("tache-avance").value = tempsEnjours;
-   }, 1000);
-
+         setTimeout(alert, 10, "La tâche est terminée!");
+      }
+   }, 100);
+   document.getElementById("btn-end").addEventListener("click", arreterMinuterie);
 }
 
 /** Arrête la minuterie. */
 function arreterMinuterie() {
    clearInterval(minuterie);
+   minuterie = null;
 }
 
 /**
