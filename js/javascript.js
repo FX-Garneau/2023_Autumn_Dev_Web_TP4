@@ -1,7 +1,5 @@
 "use strict";
-
-
-/* global DATA_TACHES, creerCard, $id, $li, google, bootstrap */
+/* global DATA_TACHES, creerCard, $id, $li, google, bootstrap, loadData */
 
 let bouton = true;
 /** @type {google.visualization.Gantt} */
@@ -22,6 +20,7 @@ const modal = new bootstrap.Modal($id("modal"));
  * @author Ulric Huot
  */
 function initialisation() {
+   loadData();
    google.charts.load("current", { packages: ["gantt"], callback: chargerEtAfficherDonneesDiagrammeEtCards });
 }
 
