@@ -120,8 +120,8 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
    modal.show();
 
    document.getElementById("btn-start").addEventListener("click", calculerAvancement);
-   document.getElementById("btn-end").addEventListener("click",arreterMinuterie);
-   
+   document.getElementById("btn-end").addEventListener("click", arreterMinuterie);
+
 }
 
 /**
@@ -135,26 +135,28 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
 function calculerAvancement() {
 
    let progressBar = document.getElementById("progress");
-   let tempsMax = document.getElementById("tache-dureeEnNbJours").value;
+   let tempsMax = parseInt(document.getElementById("tache-dureeEnNbJours").value);
    let tempsEnjours = 0;
-   
-    minuterie   = setInterval(() => {
 
-      document.getElementById("btn-end").addEventListener("click",arreterMinuterie);
+   minuterie = setInterval(() => {
 
-       progressBar.setAttribute("style", Math.round((tempsEnjours / tempsMax) * 100) + "%");
-   
-       if (tempsEnjours >= tempsMax) {
+
+
+      if (tempsEnjours >= tempsMax) {
          arreterMinuterie();
+         tempsEnjours = 0;
          alert("La tâche a été complétée");
-       } 
-       else 
-           tempsEnjours++;
-       
-      
-      
-       document.getElementById("tache-pctComplete").value=tempsEnjours;
-       document.getElementById("tache-avance").value = tempsEnjours;
+      }
+      else
+         tempsEnjours++;
+
+      let progress = (tempsEnjours / tempsMax) * 100;
+      progressBar.style.width = progress + "%";
+
+
+      document.getElementById("tache-pctComplete").value = tempsEnjours;
+      document.getElementById("tache-ralisation").value = tempsEnjours;
+      document.getElementById("btn-end").addEventListener("click", arreterMinuterie);
    }, 1000);
 
 }
