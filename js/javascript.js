@@ -142,21 +142,17 @@ function calculerAvancement() {
    let tempsEnjours = 0;
 
    minuterie = setInterval(() => {
-
-
-
-      if (tempsEnjours >= tempsMax) {
-         arreterMinuterie();
-         tempsEnjours = 0;
-         alert("La tâche a été complétée");
-      }
-      else
-         tempsEnjours++;
-
+      tempsEnjours++;
       let progress = (tempsEnjours / tempsMax) * 100;
       progressBar.style.width = progress + "%";
 
 
+
+      if (tempsEnjours == tempsMax + 1) {
+         arreterMinuterie();
+         tempsEnjours = 0;
+         alert("La tâche a été complétée");
+      }
       document.getElementById("tache-pctComplete").value = progress;
       document.getElementById("tache-ralisation").value = tempsEnjours;
       document.getElementById("btn-end").addEventListener("click", arreterMinuterie);
