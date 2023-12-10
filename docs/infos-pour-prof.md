@@ -18,11 +18,10 @@
 
 ### en cours :
 
-• Créer une animation sur l’affichage des
-cards
-
 ### taches fini :
 
+• Créer une animation sur l’affichage des
+cards
 • sauvegarderChangementsTache +
 Utilisation d’une fonction anonyme ou
 fléchée

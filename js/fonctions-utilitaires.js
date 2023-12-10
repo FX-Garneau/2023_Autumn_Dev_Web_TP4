@@ -33,7 +33,7 @@ function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBou
    for (let i = 0; i < DATA_TACHES.taches.length; i++) {
       let divContentLECard = document.createElement("div");
 
-      divContentLECard.className = "card w-25 m-1 card-animate";
+      divContentLECard.className = "card w-25 m-1 animate__animated animate__fadeInDown";
       // header du card:
       let CardHeader = document.createElement("div");
       CardHeader.className = "card-header";
