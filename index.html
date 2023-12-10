@@ -57,14 +57,36 @@
                   <input type="text" class="form-control" id="tache-id">
                   <label for="tache-titre" class="form-label">Nom de la tache</label>
                   <input type="text" class="form-control" id="tache-titre">
+
+
+
                   <div class=" d-flex justify-content-between flex-wrap">
                      <div class="w-50">
                         <label for="tache-dateDebut" class="form-label">Date de debut</label>
+
+
+
+                        <div class="input-group mb-3">
+                           <input type="datetime" class="form-control"  aria-label="Recipient's username" aria-describedby="basic-addon2">
+                           <div class="input-group-append">
+                              <span class="input-group-text" id="basic-addon2"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+</svg></span>
+                           </div>
+                           </div>
                         <input type="datetime" id="tache-dateDebut" class="form-control">
                      </div>
+
+
                      <div class="w-50">
                         <label for="tache-dateFin" class="form-label">Date de fin</label>
-                        <input type="datetime" class="form-control" id="tache-dateFin">
+                        <div class="input-group mb-3">
+                               <input type="datetime" class="form-control" id="tache-dateFin" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                              <div class="input-group-append">
+                                 <span class="input-group-text" id="basic-addon2"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/></svg></span>
+                              </div>
+                           </div>
                      </div>
 
                      <div class="w-25">
@@ -77,7 +99,7 @@
                      <div class="input-group mb-3">
                         
                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg"  height="25" fill="currentColor" class="bi bi-stopwatch-fill" viewBox="0 0 16 16">
+                        <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" fill="currentColor" class="bi bi-stopwatch-fill" viewBox="0 0 16 16">
                                  <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07A7.001 7.001 0 0 0 8 16a7 7 0 0 0 5.29-11.584.531.531 0 0 0 .013-.012l.354-.354.353.354a.5.5 0 1 0 .707-.707l-1.414-1.415a.5.5 0 1 0-.707.707l.354.354-.354.354a.717.717 0 0 0-.012.012A6.973 6.973 0 0 0 9 2.071V1h.5a.5.5 0 0 0 0-1zm2 5.6V9a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1 0-1h3V5.6a.5.5 0 1 1 1 0"/></svg></span>
                      </div>
                        <input type="number" id="tache-pctComplete" value="0" class="form-control" aria-describedby="basic-addon1">
