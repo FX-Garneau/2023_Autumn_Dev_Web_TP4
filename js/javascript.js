@@ -8,6 +8,8 @@ let chart;
 let table;
 /** @type {NodeJS.Timeout | null} */
 let minuterie;
+/** @type {google.visualization.ChartSelection} */
+let selected;
 
 const modal = new bootstrap.Modal($id("modal"));
 
@@ -109,12 +111,12 @@ function creerDonneesPourGraphique() {
  * @author Ulric Huot
  */
 function recupererTacheSelectionneeDansDiagrammeDeGantt() {
-   let selection = chart.getSelection()[0];
-   if (!selection) return;
+   selected = chart.getSelection()[0];
+   if (!selected) return;
 
    let tache = {}, props = Object.keys(DATA_TACHES.detailsTache[0]);
    for (let i = 0; i < props.length; i++)
-      tache[props[i]] = table.getValue(selection.row, i);
+      tache[props[i]] = table.getValue(selected.row, i);
 
    for (let i = 0; i < props.length; i++)
       document.getElementById("tache-" + props[i]).value = tache[props[i]];
@@ -123,6 +125,8 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
 
 
    document.getElementById("btn-start").addEventListener("click", calculerAvancement);
+   document.getElementById("btn-end").addEventListener("click", arreterMinuterie);
+
    document.getElementById("btn-end").addEventListener("click", arreterMinuterie);
 
 }
@@ -134,35 +138,41 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
  * On calcule ensuite le % d'avancement (nb jours réalisés sur le
  * nombre de jours estimé.). On anime finalement une progressBar
  * (composant Bootstrap) en appliquant dynamiquement un style (width: X%)
+ * @author Georgi, Ulric Huot
  */
 function calculerAvancement() {
-
+   if (minuterie) return;
    let progressBar = document.getElementById("progress");
-   let tempsMax = parseInt(document.getElementById("tache-dureeEnNbJours").value);
-   let tempsEnjours = 0;
 
    minuterie = setInterval(() => {
-      tempsEnjours++;
-      let progress = (tempsEnjours / tempsMax) * 100;
-      progressBar.style.width = progress + "%";
-
-
-
-      if (tempsEnjours == tempsMax + 1) {
+      const tache = DATA_TACHES.detailsTache[selected.row];
+      console.log(tache.pctComplete);
+      // error checks
+      if (!tache) return void alert("Aucune tâche sélectionnée!");
+      if (tache.pctComplete >= 100) return void alert("La tâche est terminée!");
+      if (tache.dureeEnNbJours < 0) return void alert("La durée de la tâche est invalide!");
+      // update data
+      const realisation = (tache.dureeEnNbJours * tache.pctComplete / 100) + 0.1;
+      tache.pctComplete = Math.round(Math.max(0, Math.min(100, realisation / tache.dureeEnNbJours * 100)));
+      // update visual
+      $id("tache-realisation").value = Math.round(realisation);
+      $id("tache-pctComplete").value = Math.round(tache.pctComplete);
+      progressBar.style.width = tache.pctComplete.toFixed(2) + "%";
+      // save data
+      sauvegarderChangementsTache();
+      // check if task is completed
+      if (tache.pctComplete >= 100 || realisation >= tache.dureeEnNbJours) {
          arreterMinuterie();
-         tempsEnjours = 0;
-         alert("La tâche a été complétée");
+         setTimeout(alert, 10, "La tâche est terminée!");
       }
-      document.getElementById("tache-pctComplete").value = progress;
-      document.getElementById("tache-ralisation").value = tempsEnjours;
-      document.getElementById("btn-end").addEventListener("click", arreterMinuterie);
-   }, 1000);
-
+   }, 100);
+   document.getElementById("btn-end").addEventListener("click", arreterMinuterie);
 }
 
 /** Arrête la minuterie. */
 function arreterMinuterie() {
    clearInterval(minuterie);
+   minuterie = null;
 }
 
 /**
@@ -171,10 +181,10 @@ function arreterMinuterie() {
  * vous seront utiles.
  */
 function sauvegarderChangementsTache() {
+   saveData();
    for (let i = 0; i < DATA_TACHES.detailsTache.length; i++)
       for (let j = 0; j < Object.keys(DATA_TACHES.detailsTache[i]).length; j++)
          table.setValue(i, j, DATA_TACHES.detailsTache[i][j]);
-   saveData();
 }
 
 /**

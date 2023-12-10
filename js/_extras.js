@@ -27,11 +27,11 @@ function saveData() {
    try {
       let data = Object.assign({}, DATA_TACHES);
       data.detailsTache = data.detailsTache.map(tache => {
-         tache.dateDebut = tache.dateDebut.toISOString();
-         tache.dateFin = tache.dateFin.toISOString();
+         tache.dateDebut = Number(tache.dateDebut);
+         tache.dateFin = Number(tache.dateFin);
          return tache;
       });
       localStorage.setItem("45jid7fy", btoa(JSON.stringify(data)));
       console.log("Les données ont été sauvegardées dans le localStorage.");
-   } catch { return; }
+   } catch (error) { console.log(error); }
 }
