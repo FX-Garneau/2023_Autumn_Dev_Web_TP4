@@ -1,5 +1,5 @@
 "use strict";
-/* global DATA_TACHES, creerCard, $id, $li, google, bootstrap, loadData */
+/* global DATA_TACHES, creerCard, $id, $li, google, bootstrap, loadData, saveData */
 
 let bouton = true;
 /** @type {google.visualization.Gantt} */
@@ -32,8 +32,8 @@ function initialisation() {
  * propriétés d'une tâche.
  */
 function afficherCardsTaches() {
-   let DivCard = document.getElementById("LesCards");
-   let DivFlex = document.createElement("div");
+   let divCard = document.getElementById("LesCards");
+   let divFlex = document.createElement("div");
    dispatchEvent.className = "justify-content-between";
 
    // la descrition
@@ -48,7 +48,7 @@ function afficherCardsTaches() {
       boutonHtml.setAttribute("type", "Button");
       boutonHtml.setAttribute("id-task", data.id);
       let titre = data.id + data.titre;
-      DivCard.appendChild(
+      divCard.appendChild(
          creerCard(
             "./images/check2-square.svg",
             titre,
@@ -58,7 +58,6 @@ function afficherCardsTaches() {
          )
       );
    }
-
 }
 
 /**
@@ -133,7 +132,7 @@ function recupererTacheSelectionneeDansDiagrammeDeGantt() {
 function calculerAvancement() {
    let progressBar = document.getElementById("progress");
    let tempsMax = 10;
-   let interval = setInterval(() => {
+   minuterie = setInterval(() => {
       let tempsEnjours = 0;
       document.getElementById("avancement").textContent = tempsEnjours;
 
@@ -144,12 +143,7 @@ function calculerAvancement() {
          alert("la tache a etais completer");
       else
          tempsEnjours++;
-
-
-
    }, 1000);
-
-
 }
 
 /** Arrête la minuterie. */
@@ -163,7 +157,12 @@ function arreterMinuterie() {
  * Les fonctions setValue (méthode du DataTable) et daysToMilliseconds
  * vous seront utiles.
  */
-function sauvegarderChangementsTache() { }
+function sauvegarderChangementsTache() {
+   for (let i = 0; i < DATA_TACHES.detailsTache.length; i++)
+      for (let j = 0; j < Object.keys(DATA_TACHES.detailsTache[i]).length; j++)
+         table.setValue(i, j, DATA_TACHES.detailsTache[i][j]);
+   saveData();
+}
 
 /**
  * Vérifie si la tâche fait partie des dépendances d'autres tâches.
