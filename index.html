@@ -17,18 +17,18 @@
 
 </head>
 
- 
+
 
 <body class="container">
-   
-   
+
+
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
    <!------------------------------------------------------------------------------------
            Si on a besoin des éléments interactifs de Bootstrap, on doit utiliser au minimum
            le 2e script suivant (bootstrap.min.js) et parfois le 1er en plus (Popper)
            intégrés dans cet ordre.
        ------------------------------------------------------------------------------------>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
       integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
       crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
@@ -37,109 +37,118 @@
 
 
    <main>
-
       <div id="graphique"></div>
-
       <!-- si tu chande de balise ou whatever garde l'id stp j'en ai besoin pour les card-->
       <div id="LesCards" class="d-flex justify-content-around flex-wrap"></div>
-
-
-   <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title" id="staticBackdropLabel">Ediotion d'une Tache</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="">
-                  <label for="tache-id" class="form-label">ID:</label>
-                  <input type="text" class="form-control" id="tache-id">
-                  <label for="tache-titre" class="form-label">Nom de la tache</label>
-                  <input type="text" class="form-control" id="tache-titre">
-
-
-
-                  <div class=" d-flex justify-content-between flex-wrap">
-                     <div class="w-50">
-                        <label for="tache-dateDebut" class="form-label">Date de debut</label>
-
-
-
-                        <div class="input-group mb-3">
-                           <input type="datetime" class="form-control"  aria-label="Recipient's username" aria-describedby="basic-addon2">
-                           <div class="input-group-append">
-                              <span class="input-group-text" id="basic-addon2"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
-</svg></span>
-                           </div>
-                           </div>
-                        <input type="datetime" id="tache-dateDebut" class="form-control">
-                     </div>
-
-
-                     <div class="w-50">
-                        <label for="tache-dateFin" class="form-label">Date de fin</label>
-                        <div class="input-group mb-3">
-                               <input type="datetime" class="form-control" id="tache-dateFin" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h1 class="modal-title" id="staticBackdropLabel">Ediotion d'une Tache</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                  <form action="">
+                     <label for="tache-id" class="form-label">ID:</label>
+                     <input type="text" class="form-control" id="tache-id">
+                     <label for="tache-titre" class="form-label">Nom de la tache</label>
+                     <input type="text" class="form-control" id="tache-titre">
+                     <div class=" d-flex justify-content-between flex-wrap">
+                        <div class="w-50">
+                           <label for="tache-dateDebut" class="form-label">Date de debut</label>
+                           <div class="input-group mb-3">
+                              <input type="datetime" class="form-control" aria-label="Recipient's username"
+                                 aria-describedby="basic-addon2">
                               <div class="input-group-append">
-                                 <span class="input-group-text" id="basic-addon2"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                                 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/></svg></span>
+                                 <span class="input-group-text" id="basic-addon2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" fill="currentColor"
+                                       class="bi bi-calendar" viewBox="0 0 16 16">
+                                       <path
+                                          d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                                    </svg>
+                                 </span>
                               </div>
                            </div>
-                     </div>
-
-                     <div class="w-25">
-                        <label for="tache-dureeEnNbJours" class="form-label">Nombre de jours estimer</label>
-                        <input type="number" value="0" class="form-control" id="tache-dureeEnNbJours">
-                     </div>
-
-                     <div class="w-25">
-                        <label for="tache-pctComplete" class="form-label" > Realisation</label>
-                     <div class="input-group mb-3">
-                        
-                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" fill="currentColor" class="bi bi-stopwatch-fill" viewBox="0 0 16 16">
-                                 <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07A7.001 7.001 0 0 0 8 16a7 7 0 0 0 5.29-11.584.531.531 0 0 0 .013-.012l.354-.354.353.354a.5.5 0 1 0 .707-.707l-1.414-1.415a.5.5 0 1 0-.707.707l.354.354-.354.354a.717.717 0 0 0-.012.012A6.973 6.973 0 0 0 9 2.071V1h.5a.5.5 0 0 0 0-1zm2 5.6V9a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1 0-1h3V5.6a.5.5 0 1 1 1 0"/></svg></span>
-                     </div>
-                       <input type="number" id="tache-pctComplete" value="0" class="form-control" aria-describedby="basic-addon1">
-                     </div>
-                     </div>
-
-                     <div class="w-25">   
-                        <label for="tache-avance" class="form-label">Avancement</label>
-                        <input type="number" value="0" class="form-control" id="tache-avance">
-                        <div class="progress">
-                           <div class="progress-bar progress-bar-animated" role="progressbar" id="progress"></div>
+                           <input type="datetime" id="tache-dateDebut" class="form-control">
+                        </div>
+                        <div class="w-50">
+                           <label for="tache-dateFin" class="form-label">Date de fin</label>
+                           <div class="input-group mb-3">
+                              <input type="datetime" class="form-control" id="tache-dateFin"
+                                 aria-label="Recipient's username" aria-describedby="basic-addon2">
+                              <div class="input-group-append">
+                                 <span class="input-group-text" id="basic-addon2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="25" fill="currentColor"
+                                       class="bi bi-calendar" viewBox="0 0 16 16">
+                                       <path
+                                          d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                                    </svg>
+                                 </span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="w-25">
+                           <label for="tache-dureeEnNbJours" class="form-label">Nb. jour(s) estimé</label>
+                           <input type="number" value="0" class="form-control" id="tache-dureeEnNbJours">
+                        </div>
+                        <div class="w-25">
+                           <label for="tache-pctComplete" class="form-label">Réalisation</label>
+                           <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text" id="basic-addon1"><svg
+                                       xmlns="http://www.w3.org/2000/svg" width="15" height="25" fill="currentColor"
+                                       class="bi bi-stopwatch-fill" viewBox="0 0 16 16">
+                                       <path
+                                          d="M6.5 0a.5.5 0 0 0 0 1H7v1.07A7.001 7.001 0 0 0 8 16a7 7 0 0 0 5.29-11.584.531.531 0 0 0 .013-.012l.354-.354.353.354a.5.5 0 1 0 .707-.707l-1.414-1.415a.5.5 0 1 0-.707.707l.354.354-.354.354a.717.717 0 0 0-.012.012A6.973 6.973 0 0 0 9 2.071V1h.5a.5.5 0 0 0 0-1zm2 5.6V9a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1 0-1h3V5.6a.5.5 0 1 1 1 0" />
+                                    </svg></span>
+                              </div>
+                              <input type="number" id="tache-pctComplete" value="0" class="form-control"
+                                 aria-describedby="basic-addon1">
+                           </div>
+                        </div>
+                        <div class="w-25">
+                           <label for="tache-avance" class="form-label">Avancement</label>
+                           <input type="number" value="0" class="form-control" id="tache-avance">
+                           <div class="progress">
+                              <div class="progress-bar progress-bar-animated" role="progressbar" id="progress"></div>
+                           </div>
+                        </div>
+                        <div class="w-100 d-flex justify-content-center">
+                           <div class="w-50 d-inline text-center">
+                              <button id="btn-start" class="btn btn-success p-1 "><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-stopwatch-fill" viewBox="0 0 16 16">
+                                    <path
+                                       d="M6.5 0a.5.5 0 0 0 0 1H7v1.07A7.001 7.001 0 0 0 8 16a7 7 0 0 0 5.29-11.584.531.531 0 0 0 .013-.012l.354-.354.353.354a.5.5 0 1 0 .707-.707l-1.414-1.415a.5.5 0 1 0-.707.707l.354.354-.354.354a.717.717 0 0 0-.012.012A6.973 6.973 0 0 0 9 2.071V1h.5a.5.5 0 0 0 0-1zm2 5.6V9a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1 0-1h3V5.6a.5.5 0 1 1 1 0" />
+                                 </svg>
+                                 <p class="align-bottom">Start</p>
+                              </button>
+                              <button id="btn-end" class="btn btn-danger p-1 "><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="16" height="16" fill="currentColor" class="bi bi-stopwatch"
+                                    viewBox="0 0 16 16">
+                                    <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z" />
+                                    <path
+                                       d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3" />
+                                 </svg>
+                                 <p class="align-bottom">Stop</p>
+                              </button>
+                           </div>
+                        </div>
+                        <div class="w-100">
+                           <label for="tache-dependances" class="form-label">dependance</label>
+                           <input type="text" class="form-control" id="tache-dependances">
                         </div>
                      </div>
-                     <div class="w-100 d-flex justify-content-center">
-                        <div class="w-50 d-inline text-center">
-                        <button id="btn-start" class="btn btn-success p-1 "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch-fill" viewBox="0 0 16 16">
-                        <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07A7.001 7.001 0 0 0 8 16a7 7 0 0 0 5.29-11.584.531.531 0 0 0 .013-.012l.354-.354.353.354a.5.5 0 1 0 .707-.707l-1.414-1.415a.5.5 0 1 0-.707.707l.354.354-.354.354a.717.717 0 0 0-.012.012A6.973 6.973 0 0 0 9 2.071V1h.5a.5.5 0 0 0 0-1zm2 5.6V9a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1 0-1h3V5.6a.5.5 0 1 1 1 0"/></svg> <p class="align-bottom"> start</p>
-                        </button>
-                        <button id="btn-end" class="btn btn-danger p-1 "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
-                        <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5z"/>
-                        <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5M8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3"/></svg> <p class="align-bottom">Stop</p>
-                     </button>
-                     </div>
-                     </div>
-                    
-                     <div class="w-100">
-                        <label for="tache-dependances" class="form-label">dependance</label>
-                        <input type="text" class="form-control" id="tache-dependances">
-                     </div>
-                  </div>
-               </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
-        </div>
+                  </form>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Understood</button>
+               </div>
+            </div>
+         </div>
       </div>
-    </div>
-  </div>
-
    </main>
 
    <script src="js/data-taches.js"></script>
