@@ -32,7 +32,8 @@ function convertirMillisecondesEnJours(pNbMillisecondes) {
 function creerCard(pImage, pTitre, pDescription, pEstAvecBouton, pElementHTMLBouton) {
    for (let i = 0; i < DATA_TACHES.taches.length; i++) {
       let divContentLECard = document.createElement("div");
-      divContentLECard.className = "card w-25 m-1";
+
+      divContentLECard.className = "card w-25 m-1 card-animate";
       // header du card:
       let CardHeader = document.createElement("div");
       CardHeader.className = "card-header";

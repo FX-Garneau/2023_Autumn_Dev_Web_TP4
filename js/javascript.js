@@ -212,6 +212,8 @@ function supprimerTache(e) {
    verifierSiDependanceExiste(e.target.getAttribute("id-task"))
       ? alert("il y a des dependances")
       : e.target.parentElement.parentElement.remove();
+   e.target.parentElement.parentElement.className = "fade-out-down";
+
 }
 
 window.addEventListener("load", initialisation);
